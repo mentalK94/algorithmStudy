@@ -1,3 +1,8 @@
+/*
+** programmers-Ã¼À°º¹.cpp
+** 2020-02-27
+*/
+
 #include <string>
 #include <vector>
 
@@ -5,7 +10,7 @@ using namespace std;
 
 int solution(int n, vector<int> lost, vector<int> reserve) {
 	
-    int answer = n;
+    int answer = ;
     
     for(int i=0; i<lost.size(); i++) {
     	int lostNumber = lost[i];

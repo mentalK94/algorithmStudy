@@ -1,5 +1,5 @@
 /*
-** programmers-완주하지못한선수.cpp.cpp
+** programmers-완주하지못한선수.cpp
 ** 2020-02-27
 */
 
@@ -14,7 +14,7 @@ vector<int> solution(vector<int> array, vector<vector<int>> commands) {
 	
 	vector<int> answer;
 	
-	for(int i=0; i<3; i++) {
+	for(int i=0; i<commands.size(); i++) {
 		vector<int> tempArray;
 		int start = commands[i][0];
 		int end = commands[i][1];
@@ -25,13 +25,8 @@ vector<int> solution(vector<int> array, vector<vector<int>> commands) {
 		}
 		
 		sort(tempArray.begin(), tempArray.end());
+		answer.push_back(tempArray[k-1]);
 	}
 	
-	
-	
-	
-	
-	
-    vector<int> answer;
     return answer;
 }

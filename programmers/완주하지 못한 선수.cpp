@@ -1,6 +1,5 @@
 /*
 ** programmers-완주하지못한선수.cpp
-** DFS와 BFS 
 ** 2020-02-27
 */
 

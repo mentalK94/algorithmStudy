@@ -71,7 +71,6 @@ int main(void) {
 	dfs(v);
 	
 	cout << endl;
-	
 	// BFS 결과출력 
 	bfs(v);
 	

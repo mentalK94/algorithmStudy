@@ -22,6 +22,8 @@ int main(void) {
 		commands.push(command);
 		
 		
+		
+		
 	}
 	
 	return 0;

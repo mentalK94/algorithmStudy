@@ -10,60 +10,34 @@
 
 using namespace std;
 
-bool compare(pair<long long int, pair<long long int, long long int> > a,
-			pair<long long int, pair<long long int, long long int> > b) {
-
-	if(a.first == b.first) {
-		return a.second.first < b.second.first;
-	} else {
-		return a.first < b.first;
-	}
+bool compare(pair<int, int> v1, pair<int, int> v2) {
+	if(v1.second == v2.second)
+		return v1.first < v2.first;
+	else
+		return v1.second < v2.second;
 }
 
 int main(void) {
 	
-	int n, count=0;
-	long long int start, end, distance;
-	vector<pair<long long int, long long int> > r;
-	vector<pair<long long int, pair<long long int, long long int> > > v;
+	int n, k=0, start, end, count=0;
+	vector<pair<int, int> > v;
 	
 	cin >> n;
 	
 	for(int i=0; i<n; i++) {
 		cin >> start >> end;
-		distance = end - start;
-		v.push_back(pair<long long int, pair<long long int, long long int> >
-		(distance, pair<long long int, long long int>(start, end)));
+		
+		v.push_back(pair<int, int>(start, end));
 	}
 	
 	sort(v.begin(), v.end(), compare);
 	
-	for(int i=1; i<n; i++) {
-		bool flag = true;
-		for(int j=0; j<r.size(); j++) {
-			for(int long long k=r[j].first; k<=r[j].second; k++) {
-				
-				if(v[i].second.first == k || v[i].second.second == k) {
-					flag = false;
-					break;
-				}
-			}
-		}
-		
-		if(flag) {
-			r.push_back(pair<long long int, long long int>(v[i].second.first, v[i].second.second));
-			sort(r.begin(), r.end());
-			for(int i=1; i<r.size(); i++) {
-				if(r[i].first == r[i-1].second) {
-					long long int s = r[i-1].first;
-					long long int e = r[i].second;
-					r.erase(r.begin()+i-1, r.begin()+i);
-					r.push_back(pair<long long int, long long int>(v[i].second.first, v[i].second.second));
-				}										
-			}
+	for(int i=0; i<v.size(); i++) {
+		if(k<=v[i].first) {
+			k = v[i].second;
 			count++;
 		}
-	}
+ 	}
 	
 	cout << count << endl;
 	

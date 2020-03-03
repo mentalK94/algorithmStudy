@@ -7,29 +7,29 @@
 #include <vector>
 
 using namespace std;
-
-int number = 7;
-int checked[7];
 vector<int> a[8];
+bool checked[8] = {false};
 
+// 1. 노드를 방문한다 - 해당 노드를 큐에 넣고 방문처리 한다.
+// 2. 방문한 노드의 인접한 노드 중 방문처리 되지 않은 노드를 큐에 넣는다. 
 void bfs(int start) {
-	queue<int> q;
+	
+	queue<int> q;	
 	q.push(start);
-	checked[start] = true;
+	checked[start] = true;	
 	
 	while(!q.empty()) {
 		int x = q.front();
-		q.pop();
-		printf("%d ", x);
-		
+		cout << x << " "; 
 		for(int i=0; i<a[x].size(); i++) {
-			int y = a[x][i];
-			if(!checked[y]) {
-				q.push(y);
-				checked[y] = true;
-			}
+			if(checked[a[x][i]]) 
+				continue;
+			checked[a[x][i]] = true;
+			q.push(a[x][i]);
 		}
+		q.pop();
 	}
+	 
 }
 
 int main(void) {
@@ -52,7 +52,7 @@ int main(void) {
 	a[7].push_back(3);
 	a[7].push_back(6);
 	
-	bfs(7);
+	bfs(5);
 	
 	return 0;
 }

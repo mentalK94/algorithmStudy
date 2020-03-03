@@ -13,13 +13,15 @@ bool checked[8];
 vector<int> a[8];
 
 void dfs(int x) {
-	if(checked[x]) return;	
 	
-	checked[x] = true;		
+	if(checked[x])
+		return;
+	checked[x] = true;
 	cout << x << " ";
 	for(int i=0; i<a[x].size(); i++) {
-		int y = a[x][i];
-		dfs(y);
+		if(checked[a[x][i]])
+			continue;
+		dfs(a[x][i]);
 	}
 }
 
@@ -50,7 +52,7 @@ int main(void) {
 	a[7].push_back(3);
 	a[7].push_back(6);
 	
-	dfs(7);
+	dfs(5);
 	
 	return 0;
 	

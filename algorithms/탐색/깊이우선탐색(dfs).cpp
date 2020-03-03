@@ -19,8 +19,6 @@ void dfs(int x) {
 	checked[x] = true;
 	cout << x << " ";
 	for(int i=0; i<a[x].size(); i++) {
-		if(checked[a[x][i]])
-			continue;
 		dfs(a[x][i]);
 	}
 }

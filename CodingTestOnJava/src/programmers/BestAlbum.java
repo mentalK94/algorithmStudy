@@ -57,6 +57,8 @@ class BestAlbumSolution {
 		for(int i=0; i<bestAlbum.size(); i++) 
 			answer[i] = bestAlbum.get(i);
 		
+		for(int i=0; i<bestAlbum.size(); i++) 
+			System.out.println(answer[i]);
 		return answer;
 	}
 
@@ -69,34 +71,37 @@ class BestAlbumSolution {
 
 			@Override
 			public int compare(String o1, String o2) {
-				Object v1 = albums.get(o1);
-				Object v2 = albums.get(o2);
+				int v1 = albums.get(o1);
+				int v2 = albums.get(o2);
 
-				return ((Comparable) v2).compareTo(v1);
+				if(v1 < v2) return 1;					
+				else if(v1 > v2) return -1;					
+				else return 0;
 			}
 		});
 
-		// Collections.reverse(list);
+		// Collections.reverse(list); 사용 시 오름차순
 		return (ArrayList<String>) list;
 	}
 
-	public ArrayList<Integer> sortByValue2(HashMap<Integer, Integer> albumIndexs) {
+	public ArrayList<Integer> sortByValue2(HashMap<Integer, Integer> albumIndex) {
 
 		List<Integer> list = new ArrayList<>();
-		list.addAll(albumIndexs.keySet());
+		list.addAll(albumIndex.keySet());
 
 		Collections.sort(list, new Comparator<Integer>() {
 
 			@Override
 			public int compare(Integer o1, Integer o2) {
-				Object v1 = albumIndexs.get(o1);
-				Object v2 = albumIndexs.get(o2);
+				int v1 = albumIndex.get(o1);
+				int v2 = albumIndex.get(o2);
 
-				return ((Comparable) v2).compareTo(v1);
+				if(v1 < v2) return 1;					
+				else if(v1 > v2) return -1;					
+				else return 0;
 			}
 		});
 
-		// Collections.reverse(list);
 		return (ArrayList<Integer>) list;
 	}
 }

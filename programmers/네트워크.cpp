@@ -5,12 +5,13 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
 bool checked[200];
 
-void dfs(vector<vector<int>> com, int x) {
+void dfs(vector<vector<int> > com, int x) {
 	
 	if(checked[x]) {
 		return;
@@ -25,7 +26,7 @@ void dfs(vector<vector<int>> com, int x) {
 	}
 }
 
-int solution(int n, vector<vector<int>> computers) {
+int solution(int n, vector<vector<int> > computers) {
     int answer = 0;
     
     for(int i=0; i<n; i++) {

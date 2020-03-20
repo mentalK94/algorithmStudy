@@ -14,9 +14,10 @@ using namespace std;
 bool compare(int numA, int numB) {
 	int lengthA=0, lengthB=0, tempA, tempB;
 	stack<int> a, b;
-	int t, k;
+	int t=0, k=0;
 	
 	tempA = numA; tempB = numB;
+    if(numA == numB) { return numA>numB; }
 		
 	while(tempA > 0) {		
 		tempA /= 10;
@@ -35,34 +36,26 @@ bool compare(int numA, int numB) {
 		tempA/=10;
 	}
 	
-	for(int i=lengthB; i>0; i--) {		
-		a.push(tempB%10);
+	for(int j=lengthB; j>0; j--) {		
+		b.push(tempB%10);
 		tempB/=10;
 	}
 	
-	while(!a.empty() && !b.empty()) {
+	while((!a.empty()) && (!b.empty())) {
 		t = a.top();
 		k = b.top();
 		
 		if(t!=k) {
-			if(t>k) {
-				return true;
-			} else {
-				return false;
-			}
+			return t>k;
 		}
 		
 		a.pop(); b.pop();
 	}
 	
-	while(!a.empty()) {
+	while(!a.empty()) { // a숫자가 남았을 때(더 긴 숫자일 때)
 		t = a.top();
 		if(t!=k) {
-			if(t>k) {
-				return true;
-			} else {
-				return false;
-			}
+			return t>k;
 		}
 		a.pop();
 	}
@@ -70,24 +63,26 @@ bool compare(int numA, int numB) {
 	while(!b.empty()) {
 		k = b.top();
 		if(t!=k) {
-			if(t>k) {
-				return true;
-			} else {
-				return false;
-			}
+			return t>k;
 		}
 		b.pop();
 	}
+    
+    return t>k;
 }
 
 string solution(vector<int> numbers) {
     string answer = "";
-    vector<int> tempArr;
     
     sort(numbers.begin(), numbers.end(), compare);
     
-    for(int i=0; i<numbers.size(); i++) {
-    	cout << numbers.at(i) << endl;
+    if(numbers[0] == 0)
+        return "0";
+    
+	for(int i=0; i<numbers.size(); i++) {
+        //cout << numbers[i] << endl;
+        string str = to_string(numbers[i]);
+        answer.append(str);
 	}
     
     return answer;

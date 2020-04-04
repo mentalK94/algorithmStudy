@@ -17,8 +17,7 @@ class ScaleSolution {
 	public int solution(int[] weight) {
 		int answer = 0;
 		
-		ArrayList<Integer> memory = new ArrayList<>();
-
+		ArrayList<Integer> memory = new ArrayList<>();	
 		Arrays.sort(weight);
 
 		if(weight[0] != 1)

@@ -28,10 +28,10 @@ class GymSuitSolution {
 		for (int i = 0; i < reserve.length; i++) {
 			reserveList.add(reserve[i]);
 		}
-		
+				
 		for (int i = 0; i < lostList.size(); i++) {
 			for (int j = 0; j < reserveList.size(); j++) {
-				if(isMine(lostList.get(i), reserveList.get(j))) {					
+				if(isMine(lostList.get(i), reserveList.get(j))) { // 체육복을 가져온 학생이 잃어버린 경우					
 					lostList.remove(i);
 					reserveList.remove(j);
 					i--;
@@ -42,7 +42,7 @@ class GymSuitSolution {
 	
 		for (int i = 0; i < lostList.size(); i++) {
 			for (int j = 0; j < reserveList.size(); j++) {
-				if(isBorrow(lostList.get(i), reserveList.get(j))) {					
+				if(isBorrow(lostList.get(i), reserveList.get(j))) { // 체육복을 빌릴 수 있는 지 확인					
 					lostList.remove(i);
 					reserveList.remove(j);
 					i--;

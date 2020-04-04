@@ -22,8 +22,6 @@ class LargeNumberSolution {
         int idx = 0;
         boolean flag = false;
         
-        
-        
         for(int i=0; i<length; ) {
         	temp = number.charAt(i);
         	if(k>0) {

@@ -77,7 +77,6 @@ class ConnectingIslandsSolution {
 				
 		}
 
-		
 		return answer;
 	}
 	

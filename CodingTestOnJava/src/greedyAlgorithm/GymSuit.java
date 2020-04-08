@@ -18,8 +18,8 @@ public class GymSuit {
 class GymSuitSolution {
 	public int solution(int n, int[] lost, int[] reserve) {
 		int answer = 0;		
-		List<Integer> lostList = new ArrayList<>();
-		List<Integer> reserveList = new ArrayList<>();
+		List<Integer> lostList = new ArrayList<>();  // 잃어버린 학생 목록
+		List<Integer> reserveList = new ArrayList<>();  // 여벌 체육복이 있는 학생 목로
 
 		for (int i = 0; i < lost.length; i++) {
 			lostList.add(lost[i]);

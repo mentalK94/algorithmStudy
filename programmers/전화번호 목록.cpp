@@ -1,6 +1,6 @@
 /*
 ** 전화번호 목록.cpp
-** 2020-03-06
+** 2020-03-06 -> 2020-04-13
 */
 
 #include <iostream>
@@ -10,25 +10,27 @@
 
 using namespace std;
 
-bool compare(string s1, string s2) {
-	return s1.size() < s2.size();
-}
-
 bool solution(vector<string> phone_book) {
     bool answer = true;
     int length;
     
-    sort(phone_book.begin(), phone_book.end(), compare);
+    sort(phone_book.begin(), phone_book.end());
     
-    for(int i=0; i<phone_book.size(); i++) {
-    	cout << phone_book[i] << endl;
+    for(int i=0; i<phone_book.size()-1; i++) {
+    	if(phone_book[i].size() <= phone_book[i+1].size()) {
+    		if(phone_book[i] == phone_book[i+1].substr(0, phone_book[i].size())) {
+    			return false;
+			} 
+		}
+		
+		else {		
+    		if(phone_book[i+1] == phone_book[i].substr(0, phone_book[i+1].size())) {
+    			return false;
+			} 
+		}
 	}
     
-    while(true) {
-    	
-	}
-    
-    return answer;
+    return true;
 }
 
 int main(void) {

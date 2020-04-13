@@ -1,6 +1,5 @@
 package stackAndQueue;
 
-import java.util.ArrayList;
 import java.util.Stack;
 
 public class IronBar {
@@ -18,7 +17,7 @@ public class IronBar {
 
 class IronBarSolution {
     public int solution(String arrangement) {
-        int answer = 0, raiser = 0, raiserTemp = 0, cnt = 0;
+        int answer = 0;
         // ArrayList<Integer> raiserList = new ArrayList<>();
         Stack<Character> arrStack = new Stack<>();
         

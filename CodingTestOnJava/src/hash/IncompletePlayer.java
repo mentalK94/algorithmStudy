@@ -11,7 +11,6 @@ public class IncompletePlayer {
 		
 		System.out.println(incompletePlayerSolution.solution(participant, completion));
 	}
-
 }
 
 class IncompletePlayerSolution {

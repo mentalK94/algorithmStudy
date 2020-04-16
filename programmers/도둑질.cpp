@@ -1,6 +1,6 @@
 /*
 ** programmers-도둑질.cpp
-** 2020-04-15
+** 2020-04-17
 */
 
 #include <iostream>
@@ -9,36 +9,50 @@
 using namespace std;
 
 int maxMoney = 0;
-int curMoney = 0;
-int moneyCache[1000000] = { 0, };
+int moneyCache[1000000];
+int moneyCache2[1000000];
+int moneyList[1000000]; 
 
-void steal(vector<int> money, int curMoney, int cur, bool flag) {
+int steal(int cur, bool flag, int size) { // 첫 번째 집부터 시작인 경우 -> 마지막집을 선택할 수 없다 
 	
-	if(cur >= money.size()) {
-		maxMoney = max(curMoney, maxMoney);	
-		return;
+	if(cur>=size-1) { 
+		return 0;
 	}
 	
-	// 현재 집을 지나칠 경우 -> 2번 이상 지나칠 수 없다
-	if(flag) 
-		steal(money, curMoney, cur+1, false); 
-		
-	// 현재 집을 도둑질 할 경우
-	if(moneyCache[cur] != 0) {
-		if(curMoney + money[cur] > moneyCache[cur]) {
-			moneyCache[cur] = curMoney + money[cur];
-		}		
-	}
-	else {
-		moneyCache[cur] = curMoney + money[cur];			
+	if(moneyCache[cur] != -1) { // 캐시에 저장되어 있으면 반환 
+		return moneyCache[cur];
 	}
 	
-	steal(money, moneyCache[cur], cur+2, true);
+	return moneyCache[cur] = max(steal(cur+2, true, size) + moneyList[cur], steal(cur+1, false, size));
+
+}
+
+int steal2(int cur, bool flag, int size) { // 두 번째 집부터 시작인 경우 -> 첫번째 집을 선택할 수 없다 
+	
+	if(cur>=size) { 
+		return 0;
+	}
+	
+	if(moneyCache2[cur] != -1) { // 캐시에 저장되어 있으면 반환 
+		return moneyCache2[cur];
+	}
+	
+	return moneyCache2[cur] = max(steal2(cur+2, true, size) + moneyList[cur], steal2(cur+1, false, size));
+
+
 }
 
 int solution(vector<int> money) {
+	
+	int size = money.size();
+	
+	for(int i=0; i<size; i++) {
+		moneyList[i] = money[i];
+		moneyCache[i] = -1;
+		moneyCache2[i] = -1;
+	}
     
-    steal(money, curMoney, 0, true);
+    maxMoney = max(steal(0, false, size), steal2(1, false, size));
     
     return maxMoney;
 }
@@ -50,7 +64,11 @@ int main(void) {
 	money.push_back(1);
 	money.push_back(2);
 	money.push_back(3);
-	money.push_back(1);
+	money.push_back(4);
+	money.push_back(6);
+	money.push_back(3);
+	money.push_back(7);
+	
 	
 	cout << solution(money) << endl;
 	

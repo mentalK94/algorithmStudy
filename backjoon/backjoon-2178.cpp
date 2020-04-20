@@ -18,7 +18,7 @@ int dy[4] = {1, -1, 0, 0};
 
 void bfs(int x, int y, int w, int h) {
 	
-	queue<pair<int, int> > q;	
+	queue<pair<int, int> > q;
 	q.push(pair<int, int> (x, y));
 	checked[x][y] = true;
 	

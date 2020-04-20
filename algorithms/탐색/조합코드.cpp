@@ -3,9 +3,6 @@
 */
 
 #include <iostream> 
-#include <queue>
-#include <vector>
-
 
 int main(void){
 
@@ -15,8 +12,11 @@ int main(void){
 
     for (i = 0; i < (1 << (n)); i++){
         for (j = 0; j < n; j++){
+//        	printf("i : %d\n", i);
+//        	printf("(1 << j) : %d\n", (1 << j));
             if (i & (1 << j)){
-                printf("%c ", arr[j]);
+            	
+                printf("%c", arr[j]);
             }
         }
         printf("\n");

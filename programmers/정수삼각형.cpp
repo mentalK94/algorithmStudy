@@ -1,6 +1,6 @@
 /*
 ** programmers-Á¤¼ö »ï°¢Çü.cpp
-** 2020-04-21
+** 2020-04-26
 */
 
 #include <string>
@@ -9,39 +9,35 @@
 
 using namespace std;
 
-int memory[501] = { 0, };
-int tri[125251] = { 0, };
-int triangleCache[125251] = { 0, };
-int size = 0;
+int memory[501][501] = { 0, };
+int height;
+int triArr[500][500];
 
-int getNumber(int idx, int height) {
+int getNumber(int x, int y) {
 	
-	cout << "idx : " << idx << endl;
-	
-	if(idx > size) { 
-		return 0;
+	if(x==height-1) {
+		return triArr[x][y];
 	}
-	//cout << height << " : " << memory[height] << endl;
-	if(memory[height] != 0) {return memory[height];}
 	
-	return memory[height] = max(getNumber(2*idx, height+1)+tri[idx], getNumber(2*idx+1, height+1)+tri[idx]);
+	if(memory[x][y] != 0) {return memory[x][y];}
+	
+	return memory[x][y] = max(getNumber(x+1, y), getNumber(x+1, y+1))+triArr[x][y];
 	
 }
 
 int solution(vector<vector<int> > triangle) {
     int answer = 0;
-    int idx = 0;
-    
-    for(int i=0; i<triangle.size(); i++) {
-    	for(int j=0; j<triangle[i].size(); j++) {
-    		tri[idx++] = triangle[i][j];
-    		size++;
+	
+	height = triangle.size();
+	
+	for(int i=0; i<height; i++) {
+		for(int j=0; j<triangle[i].size(); j++) {
+			triArr[i][j] = triangle[i][j];
 		}
 	}
 	
-	answer = getNumber(1, 1) + ;
+	answer = getNumber(0, 0);
     
-    cout << answer << endl;
     return answer;
 }
 

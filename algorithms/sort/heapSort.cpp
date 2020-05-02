@@ -9,10 +9,6 @@ int sorted[10];
 
 void heapSort(int heap[], int size, int sortedCounter) {
 	
-//	for(int i=0; i<size; i++) {
-//		printf("%d ", heap[i]);
-//	}
-//	printf("\n");
 	if(size >= 1) {
 		
 		// heapify
@@ -29,21 +25,11 @@ void heapSort(int heap[], int size, int sortedCounter) {
 			} while(c != 0);
 		}
 		
-//		for(int i=0; i<size; i++) {
-//			printf("%d ", heap[i]);
-//		}
-//		printf("\n");
 		
 		// max°ª Ã£±â
 		int temp = heap[size-1];
 		heap[size-1] = heap[0];
 		heap[0] = temp;
-		
-//		sorted[sortedCounter] = heap[size-1];
-//		for(int i=0; i<9; i++) {
-//			printf("%d ", sorted[i]);
-//		}
-//		printf("\n");
 		
 		heapSort(heap, size-1, sortedCounter+1);	
 	}

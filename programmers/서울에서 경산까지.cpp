@@ -9,7 +9,6 @@
 using namespace std;
 
 int memory[101][100001] = { 0, };
-bool isAccess[101][100001];
 int travelArr[101][4];
 int cities;
 int times;

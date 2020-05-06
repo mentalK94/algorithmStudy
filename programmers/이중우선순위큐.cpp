@@ -28,7 +28,7 @@ vector<int> solution(vector<string> operations) {
 			min_pq.push(num);
 			size++;
     		
-		} else if(operations[i].at(0) == 'D' && size > 0)){ // 큐에서 삭제하는 연산 
+		} else if(operations[i].at(0) == 'D' && size > 0){ // 큐에서 삭제하는 연산 
 			if(operations[i].at(2) == '1')  { // 최댓값 삭제 
 				max_pq.pop();				
 			} else { // 최솟값 삭제 

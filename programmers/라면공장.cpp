@@ -13,6 +13,9 @@ int solution(int stock, vector<int> dates, vector<int> supplies, int k) {
      
     while(k>0) {
     	
+    	if(stock  ) {
+    		
+		}
     	
     	
     	k--;

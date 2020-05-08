@@ -32,7 +32,6 @@ int solution(int stock, vector<int> dates, vector<int> supplies, int k) {
     	
     	// 1. 해당 날짜에 공급되는 밀가루가 있는 경우 우선순위 큐에 저장 
 		if(dates[idx] == day) {
-			cout << "1";
 			max_pq.push(supplies[idx]);
 			idx++;
 		}

@@ -1,2 +1,4 @@
 *.exe
 /.metadata/
+/.recommenders/
+/kakao

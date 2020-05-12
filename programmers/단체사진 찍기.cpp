@@ -1,0 +1,17 @@
+/*
+** programmers-단체사진 찍기.cpp
+** 2020-05-11
+*/
+
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// 전역 변수를 정의할 경우 함수 내에 초기화 코드를 꼭 작성해주세요.
+int solution(int n, vector<string> data) {
+	
+	
+    int answer = 0;
+    return answer;
+}

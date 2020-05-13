@@ -46,7 +46,7 @@ int solution(int n) {
     
    	eratos(n);
    	
-   	for(int i=3; i<=n; i++) {
+   	for(int i=2; i<=n; i++) {
    		if(is_prime_arr[i] == true)	 {
    			answer++;
 		}

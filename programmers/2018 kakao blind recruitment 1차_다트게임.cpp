@@ -27,15 +27,12 @@ int solution(string dartResult) {
 					
 
 		if(dartResult[i] == 'S') { // single
-			cout << "s : " << n << endl;
 			point[idx++] = n;
 			continue;
 		} else if(dartResult[i] == 'D') { // double
-			cout << "d : " << n << endl;
 			point[idx++] = n*n;
 			continue;
 		} else if(dartResult[i] == 'T') { // triple
-			cout << "t : " << n << endl;
 			point[idx++] = n*n*n;
 			continue;
 		}

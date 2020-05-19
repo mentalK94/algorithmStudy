@@ -22,6 +22,10 @@ int solution(string s)
 			}
 		}
 	}
+	
+	if(v.size() == 0) {
+		return 1;
+	}
 
     return answer;
 }

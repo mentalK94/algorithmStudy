@@ -89,10 +89,10 @@ class Problem3Solution {
         answerCnt = gemList2.size();
 
         for(int i=0; i<gems.length; i++) {
-        	cnt = 0;      	
+         	cnt = 0;      	
         	
-        	if(buyMap.containsKey(gems[i])) {
-        		if(buyMap.get(gems[i]) >= 2) {
+        	if(buyMap.containsKey(gems[i])) { 
+        		if(buyMap.get(gems[i]) >= 2) { // 2개 이상 있는 경우 -> 이미 뒤에 존재하기때문에 현재 인덱스부터 시작할 필요 없음..
         			buyMap.put(gems[i], buyMap.get(gems[i])-1);
         			continue;
         		}
@@ -103,7 +103,7 @@ class Problem3Solution {
 	        	for(int j=i; j<gems.length; j++) {
 	        		System.out.println(j);
 	        		
-	        		if(cnt >= minCnt) {
+	        		if(cnt >= minCnt) { // 모든 것을 구매한 minCnt보다 현재 cnt가 큰 경우 최솟값이 아니므로 pass
 	        			flag = false;
 	        			break;
 	        		}
@@ -134,7 +134,7 @@ class Problem3Solution {
         	}
         }
         
-        // System.out.println(answer[0] + " " + answer[1]);
+         System.out.println(answer[0] + " " + answer[1]);
 
         return answer;
     }

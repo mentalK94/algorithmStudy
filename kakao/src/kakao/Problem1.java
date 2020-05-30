@@ -80,6 +80,7 @@ class Problem1Solution {
         		builder.append("R");
         		continue;
         	}
+        	
         	// 3. 거리가 같은 경우 -> 손잡이에 따른다.
         	if(dist[lHand][numbers[i]] < dist[rHand][numbers[i]]) { // 왼손이 가까운 경우
         		lHand = numbers[i];
@@ -104,6 +105,7 @@ class Problem1Solution {
         }
         
         answer = builder.toString();
+        // System.out.println(answer);
         return answer;
     }
 }

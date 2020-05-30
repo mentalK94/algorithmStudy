@@ -22,7 +22,7 @@ int solution(string s) {
         
         for(int j=0; j<s.length(); j+=i) {
         	
-            temp = s.substr(j, i); // 비교기준 문자열 
+            temp = s.substr(j, i); // 비교기준 문자열
             
             if(j+i > s.length() || temp != s.substr(j+i, i)) { // 문자열이 같지 않거나 비교 길이를 초과한 경우 
                 if(cnt != 1) {
@@ -38,7 +38,7 @@ int solution(string s) {
                 
         }
         
-        if(answer >= result.length()) {
+        if(answer > result.length()) {
             answer = result.length();
         }
         

@@ -3,7 +3,6 @@
 ** 2020-05-19
 */
 
-#include <stdio.h>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -11,8 +10,8 @@
 
 using namespace std;
 
-int poll[102][102];
-int plat[102][102];
+int poll[102][102]; // 기둥 
+int bo[102][102]; // 보 
 int build[102][102];
 
 // 문제에서 x, y, 기둥 또는 보 순서대로 오름차순 정렬을 하라고 했다. vector를 문제에서 요구한대로 오름차순 정렬하기 위한 compare 함수
@@ -23,13 +22,13 @@ bool compare(vector<int> &a, vector<int> &b){
 }
 
 // 보 또는 기둥이 존재할 수 있는지 체크하는 함수
-bool isBuilt(int x, int y,  int type){
+bool isBuilt(int x, int y, int type){
     
     // 기둥일 경우
     if(type == 0){
         // 바닥에 설치 하거나 || 아래에 기둥이 존재하거나 ((y - 1)이므로 y >= 1이어야한다) || 밑에 오른쪽으로 뻗은 보가 있거나 || 밑에 왼쪽으로 뻗은
         // 보가 있으면 true, 없으면 false
-        if(y == 0 || (y >= 1 && poll[y - 1][x] == 1) || plat[y][x] == 1 || (x >= 1 && plat[y][x - 1] == 1)){
+        if(y == 0 || (y >= 1 && poll[y - 1][x] == 1) || bo[y][x] == 1 || (x >= 1 && bo[y][x - 1] == 1)){
             return true;
         }
         else return false;
@@ -37,7 +36,7 @@ bool isBuilt(int x, int y,  int type){
     // 보일 경우
     else{
         // 왼쪽 모서리에 기둥이 받치고 있거나 || 오른쪽 아래에 기둥이 받치고 있거나 || 양 옆에 보가 있으면 true, 없으면 false
-        if((y >= 1 && (poll[y - 1][x] == 1 || poll[y - 1][x + 1] == 1)) || (x >= 1 && plat[y][x - 1] == 1 && plat[y][x + 1] == 1)){
+        if((y >= 1 && (poll[y - 1][x] == 1 || poll[y - 1][x + 1] == 1)) || (x >= 1 && bo[y][x - 1] == 1 && bo[y][x + 1] == 1)){
             return true;
         }
         else return false;
@@ -55,7 +54,7 @@ vector<vector<int> > solution(int n, vector<vector<int> > build_frame) {
         for(int j = 0; j <= 101; j++){
             build[i][j] = 0;
             poll[i][j] = 0;
-            plat[i][j] = 0;
+            bo[i][j] = 0;
         }
     }
     
@@ -83,7 +82,7 @@ vector<vector<int> > solution(int n, vector<vector<int> > build_frame) {
                 if(isBuilt(x, y, type)){
                     // 보이므로 2 증가
                     build[y][x] += 2;
-                    plat[y][x] = 1;
+                    bo[y][x] = 1;
                 }
             }
         }
@@ -99,12 +98,12 @@ vector<vector<int> > solution(int n, vector<vector<int> > build_frame) {
                     poll[y][x] = 1;
                 }
                 // 위에 왼쪽으로 뻗은 보가 있고 이 보가 존재할 수 없다면,
-                else if(x >= 1 && plat[y + 1][x - 1] == 1 && !isBuilt(x - 1, y + 1, 1)){
+                else if(x >= 1 && bo[y + 1][x - 1] == 1 && !isBuilt(x - 1, y + 1, 1)){
                     // 역시 다시 되돌림
                     poll[y][x] = 1;
                 }
                 // 위에 오른쪽으로 뻗은 보가 있는 경우
-                else if(plat[y + 1][x] == 1 && !isBuilt(x, y + 1, 1)){
+                else if(bo[y + 1][x] == 1 && !isBuilt(x, y + 1, 1)){
                     poll[y][x] = 1;
                 }
                 // 위의 케이스에 해당되지 않으면 지울 수 있다. 기둥이므로 -1 해주자.
@@ -113,22 +112,22 @@ vector<vector<int> > solution(int n, vector<vector<int> > build_frame) {
             // 삭제하고자 하는 오브젝트가 보일 경우
             else if(type == 1){
                 // 역시 일단 보를 지울 수 있다고 가정하자
-                plat[y][x] = 0;
+                bo[y][x] = 0;
                 // 왼쪽 모서리 위에 기둥이 있을 경우
                 if(poll[y][x] == 1 && !isBuilt(x, y, 0)){
-                    plat[y][x] = 1;
+                    bo[y][x] = 1;
                 }
                 // 오른쪽 모서리에 기둥이 있을 경우
                 else if(poll[y][x + 1] == 1 && !isBuilt(x + 1, y, 0)){
-                    plat[y][x] = 1;
+                    bo[y][x] = 1;
                 }
                 // 왼쪽에 보가 있을 경우
-                else if(x >= 1 && plat[y][x - 1] == 1 && !isBuilt(x - 1, y, 1)){
-                    plat[y][x] = 1;
+                else if(x >= 1 && bo[y][x - 1] == 1 && !isBuilt(x - 1, y, 1)){
+                    bo[y][x] = 1;
                 }
                 // 오른쪽에 보가 있을 경우
-                else if(plat[y][x + 1] == 1 && !isBuilt(x + 1, y, 1)){
-                    plat[y][x] = 1;
+                else if(bo[y][x + 1] == 1 && !isBuilt(x + 1, y, 1)){
+                    bo[y][x] = 1;
                 }
                 // 해당하지 않으면 삭제. 보이므로 -2 해주자.
                 else build[y][x] -= 2;

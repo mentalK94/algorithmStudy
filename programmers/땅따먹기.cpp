@@ -1,60 +1,39 @@
 /*
 ** programmers-¶¥µû¸Ô±â.cpp
-** 2020-05-18
+** 2020-06-08
 */
 
 #include <algorithm>
 #include <vector>
+#include <iostream>
 using namespace std;
 
-vector<vector<int> > board_v;
-int cache[100000][4] = {0,};
+int cache[100001][4] = {0,};
 int size;
 
-int dp(int order, int pre_idx, int idx) {
-	
-	if(order < 0) {
-		return 0;
-	}
-	
-	if(pre_idx = -1) {
-		return board_v[order][idx];
-	}
-	
-	if(cache[order][idx] != 0) {
-		return cache[order][idx];
-	}
-	
-	return cache[order][idx] = max(cache[order][idx], cache[order-1][pre_idx] + board_v[order][idx]);
-	
-	int temp = idx;
-	
-	for(int cnt=1; cnt<4; cnt++) {
-		
-		if(idx+1 == 4) {
-			idx = -1;
-		}
-		
-		dp(order-1, temp, idx+1);
-		
-		idx++;
-	}
-}
-
-int solution(vector<vector<int>> board)
+int solution(vector<vector<int> > board)
 {
-    int answer;
-    board_v = board;
+    int answer = 0;
 	size = board.size();
 	
-	dp(size-1, -1, 0);
-	dp(size-1, -1, 1);
-	dp(size-1, -1, 2);
-	dp(size-1, -1, 3);
+	for(int i=0; i<4; i++) {
+		cache[0][i] = board[0][i];
+	}
 	
-	sort(cache[size-1], cache[size-1]+4);
-	answer = cache[size-1][3];
-
+	for(int i=1; i<size; i++) {
+		for(int j=0; j<4; j++) {
+			for(int k=0; k<4; k++) {
+				if(j != k) {
+					cache[i][j] = max(cache[i][j], cache[i-1][k]+board[i][j]);					
+				}
+			}
+		}
+	}
+	
+	for(int i=0; i<4; i++) {
+		answer = max(answer, cache[size-1][i]);
+	}	
+	
     return answer;
 }
 

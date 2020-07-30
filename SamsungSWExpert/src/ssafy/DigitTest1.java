@@ -1,3 +1,4 @@
+package ssafy;
 /**
  * DigitTest1.java
  * 2020-07-21
@@ -13,7 +14,7 @@ public class DigitTest1 {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		// digits 배열 초기화
+		// digits 배열 초기 호
 		for(int i=0; i<digits.length; i++) {
 			digits[i] = 0;
 		}
@@ -26,7 +27,7 @@ public class DigitTest1 {
 				// digits 배열 출력
 				for(int i=0; i<digits.length; i++) {
 					if(digits[i] != 0)
-						System.out.println(i + " : " + digits[i] + "개");
+						System.out.println(i + " : " + digits[i] + "�?");
 				}
 				
 				break; // while문 탈출

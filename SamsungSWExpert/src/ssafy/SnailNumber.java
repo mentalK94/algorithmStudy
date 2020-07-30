@@ -1,3 +1,4 @@
+package ssafy;
 import java.util.Scanner;
 
 /**

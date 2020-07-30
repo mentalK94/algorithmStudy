@@ -7,9 +7,7 @@ public class Flatten {
 		Scanner sc = new Scanner(System.in);
 		int T;
 		T=sc.nextInt();
-		/*
-		   여러 개의 테스트 케이스가 주어지므로, 각각을 처리합니다.
-		*/
+		StringBuilder sb = new StringBuilder();
 
 		for(int test_case = 1; test_case <= T; test_case++)
 		{
@@ -25,13 +23,14 @@ public class Flatten {
 				
 				Arrays.sort(boxlist);
 				
-				boxlist[boxlist.length-1]-=1;
-				boxlist[0]+=1;
+				boxlist[boxlist.length-1]--;
+				boxlist[0]++;
 			}
 
 			Arrays.sort(boxlist);
-			System.out.println("#"+test_case + " " + (boxlist[boxlist.length-1] - boxlist[0]));
-
+			sb.append("#").append(test_case).append(" ").append((boxlist[boxlist.length-1] - boxlist[0])).append("\n");			
 		}
+		
+		System.out.println(sb.toString());
 	}
 }

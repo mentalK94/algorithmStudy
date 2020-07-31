@@ -8,6 +8,7 @@ public class SquareRoom {
 
 	private static int N;
 	private static int[][] square;
+	private static boolean[][] isVisited; 
 	private static int count;
 	private static int dx[] = {-1, 1, 0, 0};
 	private static int dy[] = {0, 0, -1, 1};
@@ -26,6 +27,7 @@ public class SquareRoom {
 			N = Integer.parseInt(br.readLine());
 			
 			square = new int[N][N];
+			isVisited = new boolean[N][N];
 
 			// 방 번호 입력
 			for(int i=0; i<N; i++) {
@@ -43,6 +45,8 @@ public class SquareRoom {
 			// 각 방마다 이동할 수 있는 방 갯수 탐색
 			for(int i=0; i<N; i++) {
 				for(int j=0; j<N; j++) {
+					if(isVisited[i][j]) {continue;}
+					
 					count = 1;
 					getMoveCount(i, j); // i, j 방에서 이동할 수 있는 횟수 구하는 메서드 호출
 					if(answer < count) {
@@ -67,6 +71,7 @@ public class SquareRoom {
 			int ry = y+dy[i];
 			if(isInSquare(rx, ry)) {
 				if(square[x][y]+1 == square[rx][ry]) {
+					isVisited[rx][ry] = true;
 					count++;
 					getMoveCount(rx, ry);	
 				}				

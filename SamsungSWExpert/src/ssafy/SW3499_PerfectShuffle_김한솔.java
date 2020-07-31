@@ -27,7 +27,7 @@ public class PerfectShuffle {
 			
 			for(int i=0; i<cardCnt/2; i++) {
 				sb.append(cards[i]+" ");				
-				sb.append(cards[halfStart+i]+" ");
+				sb.append(cards[halfStart]+" ");
 			}				
 
 			if(cardCnt % 2 == 1)

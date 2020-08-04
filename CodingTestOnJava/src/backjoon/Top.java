@@ -19,6 +19,8 @@ public class Top {
 
 		st = new StringTokenizer(br.readLine());
 		
+		
+		
 		for (int idx=0; idx < N ; idx++) {
 			
 			int height = Integer.parseInt(st.nextToken()); // 탑 높이 입력
@@ -32,7 +34,7 @@ public class Top {
 					heightMemory.push(height);
 					indexMemory.push(idx+1);
 					break;
-				}
+				} 
 				
 				// 수신 받은 경우
 				if(height < heightMemory.peek()) {

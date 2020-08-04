@@ -53,7 +53,7 @@ class Problem3Solution {
 	        		}
 	        		
 	        		if(!buyMap.containsKey(gems[j])) { 
-	        			buyMap.put(gems[j], 1);
+	        			buyMap.put(gems[j], 1); 
 	        		} else { 
 	        			int v = buyMap.get(gems[j]);
 	        			buyMap.put(gems[j], v+1);

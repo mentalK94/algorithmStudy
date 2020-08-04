@@ -12,8 +12,8 @@ public class EmergencyContact {
 	private static int START;
 	private static boolean matrix[][];
 	private static int visited[];
-	private static int value = 0;
-	private static int answer = 0;
+	private static int value;
+	private static int answer;
 	
 	public static void main(String args[]) throws Exception
 	{
@@ -39,7 +39,7 @@ public class EmergencyContact {
 				matrix[from][to] = true;
 			}
 			
-			answer = 0;
+			answer = 0; value=0;
 			bfs(START);
 			
 			sb.append(answer+"\n");
@@ -64,16 +64,15 @@ public class EmergencyContact {
 						&& visited[i] == 0) {
 					queue.offer(i);
 					visited[i] = visited[current]+1; 	// 방법2 : 들어갈때 방문 처리
+					value = Math.max(value, visited[i]);
 				}
 			}					
 		}
 		
-		value = 0;
-		
-		for(int i=1; i<SIZE+1; i++) {
-			if(value <= visited[i]) {
+		for(int i=SIZE; i>0; i--) {
+			if(visited[i] == value) {
 				answer = i;
-				value = visited[i];
+				break;
 			}
 		}
 	}

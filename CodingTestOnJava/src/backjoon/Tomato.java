@@ -1,3 +1,10 @@
+/**
+ * Backjoon - 7576. 토마토
+ * Tomato.java
+ * @date 2020-08-05
+ * @author hansolKim
+ **/
+
 package backjoon;
 
 import java.io.BufferedReader;

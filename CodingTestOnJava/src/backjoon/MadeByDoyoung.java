@@ -1,9 +1,15 @@
+/**
+ * Backjoon - 2961. 도영이가 만든 맛있는 음식
+ * MadeByDoyoung.java
+ * @date 2020-08-06
+ * @author hansolKim
+ **/
+
 package backjoon;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class MadeByDoyoung {

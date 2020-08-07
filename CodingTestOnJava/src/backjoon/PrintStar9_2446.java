@@ -26,10 +26,10 @@ public class PrintStar9_2446 {
 				}
 				System.out.println();
 			} else {
-				for(int j=i; j<2*N-1; j++) {
+				for(int j=1; j<=2*N-1-i; j++) {
 					System.out.print(" ");
 				}
-				for(int j=N-i; j<=2*N; j++) {
+				for(int j=1; j<=2*i-2*N+1; j++) {
 					System.out.print("*");
 				}
 				System.out.println();

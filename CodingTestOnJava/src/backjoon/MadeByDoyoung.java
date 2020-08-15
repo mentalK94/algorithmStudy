@@ -22,7 +22,7 @@ public class MadeByDoyoung {
 	private static int[] selectedB; // 쓴맛
 	private static int diff;
 	
-	public static void main(String[] args) throws NumberFormatException, IOException {
+	public static void main(String[] args) throws IOException {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		N = Integer.parseInt(br.readLine());

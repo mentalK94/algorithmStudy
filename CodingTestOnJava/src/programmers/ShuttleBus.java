@@ -34,7 +34,6 @@ public class ShuttleBus {
         int busTime = 540; // 09:00을 뜻함
         timeList = new ArrayList<>();
         
-        
         for(int i=0; i<timetable.length; i++) {
         	StringTokenizer st = new StringTokenizer(timetable[i], ":");
         	int hh = Integer.parseInt(st.nextToken());
@@ -61,6 +60,7 @@ public class ShuttleBus {
         					idx++;
         				} else { // 자리가 있는 경우
         					cornTime = busTime;
+        					break main;
         				}
         			}
         		}

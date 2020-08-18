@@ -14,7 +14,7 @@ import java.io.InputStreamReader;
 public class CroatiaAlphabet_2941 {
 
 	private static int count = 0;
-	private static String[] croatian = {"c=", "c-", "dz=", "d-", "lj", "nj", "s=", "z="};
+	private static String[] croatian = {"c=", "c-", "dz", "d-", "lj", "nj", "s=", "z="};
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -28,7 +28,14 @@ public class CroatiaAlphabet_2941 {
 			
 			String temp = str.substring(i, i+2);
 			for(int j=0; j<croatian.length; j++) {
-				if(croatian[j].contains(temp)) {
+				if((i+2)<str.length()) {
+					if(j==2 && croatian[j].equals(temp) && str.charAt(i+2) == '=') {
+						i+=2;
+						break;
+					}
+				}
+				
+				if(j!=2 && croatian[j].equals(temp)) {
 					i+=croatian[j].length()-1;
 					break;
 				}

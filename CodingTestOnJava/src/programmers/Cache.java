@@ -29,7 +29,7 @@ public class Cache {
         	if(cache.contains(city)) {
         		answer += CACHE_HIT;
         		cache.remove(city);
-        		cache.add(city);
+        		cache.offer(city);
         	} else {
         		answer += CACHE_MISS;
         		cache.add(city);

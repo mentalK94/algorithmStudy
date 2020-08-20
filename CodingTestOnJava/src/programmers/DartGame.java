@@ -30,7 +30,7 @@ public class DartGame {
         	}
         	
         	if(dartResult.charAt(i)=='D') {
-        		score[++idx] = (int)(Math.pow((double)num, 2.0));
+        		score[++idx] = (int) Math.pow(num, 2.0);
         		num = 0;
         		continue;
         	}

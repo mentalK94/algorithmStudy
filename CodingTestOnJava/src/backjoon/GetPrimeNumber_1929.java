@@ -1,6 +1,6 @@
 /**
- * Backjoon - 2581. 소수
- * PrimeNumber_2581.java
+ * Backjoon - 1929. 소수 구하기
+ * GetPrimeNumber_1929.java
  * @date 2020-08-21
  * @author hansolKim
  **/
@@ -12,13 +12,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class PrimeNumber_2581 {
+public class GetPrimeNumber_1929 {
 
 	public static void main(String[] args) throws IOException {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
 		
-		boolean[] isNotPrime = new boolean[10001];
+		boolean[] isNotPrime = new boolean[1000001];
 		isNotPrime[1] = true; // 소수가 아님을 표기 		
 		
 		for(int i=2; (i*i)<isNotPrime.length; i++) {
@@ -27,22 +28,17 @@ public class PrimeNumber_2581 {
 			}
 		}
 		
-		int M = Integer.parseInt(br.readLine());
-		int N = Integer.parseInt(br.readLine());
-		int min = 0;
-		int sum = 0;
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		int M = Integer.parseInt(st.nextToken());
+		int N = Integer.parseInt(st.nextToken());
 		
 		for(int i=M; i<=N; i++) {
 			if(!isNotPrime[i]) {
-				if(min == 0) {min=i;}
-				sum+=i;
+				sb.append(i+"\n");
 			}
 		}
 		
-		if(min == 0)
-			System.out.println(-1);
-		else 
-			System.out.println(sum + "\n" + min);
+		System.out.println(sb.toString());
 	}
 
 }

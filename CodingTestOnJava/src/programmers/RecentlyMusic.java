@@ -52,7 +52,7 @@ public class RecentlyMusic {
 	}
 
 	public String solution(String m, String[] musicinfos) {
-		String answer = "`(None)`";
+		String answer = "(None)";
 		List<Music> musicList = new ArrayList<>();
 		StringBuilder sb = new StringBuilder();
 		String mCode = "";

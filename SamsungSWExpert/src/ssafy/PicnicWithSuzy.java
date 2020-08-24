@@ -62,6 +62,7 @@ public class PicnicWithSuzy {
 	 * */
 	private static void bfs(int x, int y, int step) {
 		
+		if(answer == 26) return;
 		if(answer < step) { answer = step; }
 		
 		for(int i=0; i<4; i++) {
@@ -71,7 +72,7 @@ public class PicnicWithSuzy {
 			if(!isInMap(rx, ry)) { continue; } // 탈출
 			
 			if(!isVisited[map[rx][ry]]) {
-				isVisited[map[x][y]] = true;
+				isVisited[map[rx][ry]] = true;
 				bfs(rx, ry, step+1);
 				isVisited[map[rx][ry]] = false;
 			}

@@ -11,7 +11,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 class Address {
@@ -27,11 +26,10 @@ class Address {
 public class ChickenDelivery_15686 {
 
 	private static int answer = Integer.MAX_VALUE;
-	private static int[][] map;
-	private static int N, M;
-	private static ArrayList<Address> chickens = new ArrayList<>();
-	private static ArrayList<Address> homes = new ArrayList<>();
-	private static int[] numbers;
+	private static int N, M; // N: 배열의 크기, M: 운영할 치킨집의 갯수
+	private static ArrayList<Address> chickens = new ArrayList<>(); // 치킨집 좌표 리스트
+	private static ArrayList<Address> homes = new ArrayList<>(); // 일반집 좌표 리스트
+	private static int[] numbers; // 운영한 치킨집의 인덱스 리스트
 
 	public static void main(String[] args) throws IOException {
 
@@ -40,8 +38,6 @@ public class ChickenDelivery_15686 {
 		StringTokenizer init = new StringTokenizer(br.readLine());
 		N = Integer.parseInt(init.nextToken());
 		M = Integer.parseInt(init.nextToken());
-
-		// map = new int[N][N];
 
 		/** data삽입 */
 		for (int i = 0; i < N; i++) {
@@ -68,12 +64,14 @@ public class ChickenDelivery_15686 {
 	private static void combination(int cnt, int start) {
 		if (cnt == M) {
 			int distance = 0;
+			
+			/* 일반 집 탐색해서 운영하고 있는 치킨집과의 거리 중 최소값 계산  */
 			for(int i=0; i<homes.size(); i++) {
 				int homeX = homes.get(i).x;
 				int homeY = homes.get(i).y;
 				int dist = Integer.MAX_VALUE;
 				
-				for(int j=0; j<M; j++) {
+				for(int j=0; j<M; j++) { // 운영하고 있는 치킨집 -> numbers배열 인덱스 이용
 					int chickenX = chickens.get(numbers[j]).x;
 					int chickenY = chickens.get(numbers[j]).y;
 					dist = Math.min(dist,

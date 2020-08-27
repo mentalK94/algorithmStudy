@@ -24,7 +24,7 @@ class File implements Comparable<File> {
 	}
 	
 	@Override
-	public int compareTo(File o) {
+	public int compareTo(File o) { 
 		if(this.head.equals(o.head)) { // 파일명이 같은 경우
 			return Integer.compare(this.number, o.number);
 		}

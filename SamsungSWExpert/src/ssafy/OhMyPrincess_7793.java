@@ -133,7 +133,6 @@ public class OhMyPrincess_7793 {
 					continue; // 이동할 수 없는 칸인 경우
 
 				if (p.isDevil() && map[rx][ry] == '.') { // devil인 경우
-//					System.out.println("흑화 : " + rx + ", " + ry);
 					map[rx][ry] = '*'; // 흑화 표기
 					q.offer(new Point(rx, ry, p.getSec() + 1, p.isDevil()));
 				} else if (!p.isDevil() && !visited[rx][ry] && (map[rx][ry] == '.' || map[rx][ry] == 'D')) { // 수연인 경우
@@ -143,7 +142,6 @@ public class OhMyPrincess_7793 {
 						return;
 					}
 					
-//					System.out.println("수연 : " + rx + ", " + ry);
 					visited[rx][ry] = true;
 					q.offer(new Point(rx, ry, p.getSec() + 1, p.isDevil()));
 				}

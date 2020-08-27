@@ -48,7 +48,7 @@ public class PicnicWithSuzy {
 			isVisited[map[0][0]] = true;
 			// dfs출발
 			answer++;
-			bfs(0, 0, 1);
+			dfs(0, 0, 1);
 			
 			sb.append(answer).append("\n");
 		}
@@ -60,7 +60,8 @@ public class PicnicWithSuzy {
 	 * @param y : c
 	 * @param step : 현재까지 진행한 칸수 
 	 * */
-	private static void bfs(int x, int y, int step) {
+	private static void dfs(int x, int y, int step) {
+		System.out.println(x +" " + y);
 		
 		if(answer == 26) return;
 		if(answer < step) { answer = step; }
@@ -73,7 +74,7 @@ public class PicnicWithSuzy {
 			
 			if(!isVisited[map[rx][ry]]) {
 				isVisited[map[rx][ry]] = true;
-				bfs(rx, ry, step+1);
+				dfs(rx, ry, step+1);
 				isVisited[map[rx][ry]] = false;
 			}
 		}

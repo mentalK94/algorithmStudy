@@ -57,7 +57,7 @@ public class JunHwansScale_3234 {
 		if (cnt == N) {
 			int idx = 0;
 			int left=0, right=0; // 양쪽 저울 무게 초기화
-			// System.out.println(Arrays.toString(numbers));
+
 			// 1. 첫번째 추는 무조건 왼쪽에 올라가게 된다
 			left += numbers[idx++];
 
@@ -84,7 +84,6 @@ public class JunHwansScale_3234 {
 		} // 오른쪽 무게가 왼쪽보다 커지는 경우
 
 		if (idx == N) {
-			// System.out.println(idx + " : " + left + ", " + right);
 			count++;
 			return;
 		}

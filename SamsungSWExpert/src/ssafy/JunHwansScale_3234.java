@@ -79,11 +79,9 @@ public class JunHwansScale_3234 {
 
 	private static void put(int left, int right, int idx) {
 
-		if (left < right) {
-			return;
-		} // 오른쪽 무게가 왼쪽보다 커지는 경우
+		if (left < right) { return; } // 오른쪽 무게가 왼쪽보다 커지는 경우
 
-		if (idx == N) {
+		if (idx == N) { // 모든 추를 올려놓는데 성공한 경우
 			count++;
 			return;
 		}

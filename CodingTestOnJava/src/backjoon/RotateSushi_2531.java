@@ -1,6 +1,6 @@
 /**
- * Backjoon - 15961. 회전 초밥
- * RotateSushi_15961.java
+ * Backjoon - 2531. 회전 초밥
+ * RotateSushi_2531.java
  * @date 2020-08-28
  * @author hansolKim
  **/
@@ -18,7 +18,7 @@ import java.util.Set;
 import java.util.StringTokenizer;
 
 //최대로 먹는 경우 총 k+1개의 초밥을 먹는다.
-public class RotateSushi_15961 {
+public class RotateSushi_2531 {
 	
 	public static void main(String[] args) throws Exception{
 		

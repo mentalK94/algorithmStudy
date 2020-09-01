@@ -1,10 +1,17 @@
+/**
+ * Backjoon - 18868. 멀티버스 Ⅰ
+ * MultiBus_18868.java
+ * @date 2020-09-01
+ * @author hansolKim
+ **/
+
 package backjoon;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Algo2_서울_6반_김한솔 {
+public class MultiBus1_18868 {
 
 	public static void main(String[] args) throws Exception {
 

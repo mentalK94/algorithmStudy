@@ -13,8 +13,8 @@ public class MuzyEatingLive {
 
 	public static void main(String[] args) {
 		MuzyEatingLive eatingLive = new MuzyEatingLive();
-		int[] food_times = {3,1,2};
-		long k = 5;
+		int[] food_times = {1,5,5,5,5,6,7};
+		long k = 30;
 		eatingLive.solution(food_times, k);
 	}
 
@@ -38,7 +38,7 @@ public class MuzyEatingLive {
 			int minValue = sortTimes[minIdx] - min;
 
 			/* (음식들을 먹는 시간들 중 최소값*음식의 수)과 k와 비교 */
-			if (k >= minValue * foodSize) { // 최소값보다 k가 큰 경우 ---> 모든 배열의 값을 최소값만큼 빼준다.
+			if (k >= ((long)minValue * foodSize)) { // 최소값보다 k가 큰 경우 ---> 모든 배열의 값을 최소값만큼 빼준다.
 				for (int i = 0; i < food_times.length; i++) {
 					food_times[i] -= minValue;
 				}

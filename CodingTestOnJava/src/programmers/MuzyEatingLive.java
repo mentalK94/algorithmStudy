@@ -69,7 +69,8 @@ public class MuzyEatingLive {
 				}
 			}
 		}
-		System.out.println(answer);
+		
+		// System.out.println(answer);
 		return answer;
 	}
 }

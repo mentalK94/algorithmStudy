@@ -41,6 +41,4 @@ public class Combination_2407 {
 
 		System.out.println(answer);
 	}
-
-	
 }

@@ -1,3 +1,10 @@
+/**
+ * Samsung SW Expert - 1251. 하나로
+ * Hanaro_1251.java
+ * @date 2020-09-03
+ * @author hansolKim
+ **/
+
 package ssafy;
 
 import java.io.BufferedReader;

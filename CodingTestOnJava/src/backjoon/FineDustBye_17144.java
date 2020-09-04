@@ -47,13 +47,7 @@ public class FineDustBye_17144 {
 
 			// 미세먼지 확산
 			doDiffusion();
-//			for (int k = 0; k < R; k++) {
-//				for (int j = 0; j < C; j++) {
-//					System.out.print(map[k][j] + " ");
-//				}
-//				System.out.println();
-//			}
-//			System.out.println();
+
 			// 공기청정기 작동
 			doAirPurifier();
 		}

@@ -2,7 +2,6 @@ package ssafy;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
 public class JungsikBankingBusiness_4366 {
 
@@ -28,26 +27,26 @@ public class JungsikBankingBusiness_4366 {
 			int binaryNum = 0;
 			int threeNum = 0;
 			
+//			int m = 1;
+//			// 입력받은 2진수 binaryArr에 삽입
+//			for(int i=binaryStr.length()-1; i>=0; i--) {				
+//				binaryNum += (binaryStr.charAt(i) - '0')*m;
+//				m*=2;
+//			}
+//			
+//			m = 1;
+//			for(int i=threeStr.length()-1; i>=0; i--) {
+//				threeNum += (threeStr.charAt(i) - '0')*m;
+//				m*=3;
+//			}
+			
+			binaryNum = Integer.parseInt(br.readLine(), 2);
+			threeNum = Integer.parseInt(br.readLine(), 3);
+			
 			int m = 1;
-			// 입력받은 2진수 binaryArr에 삽입
-			for(int i=binaryStr.length()-1; i>=0; i--) {				
-				binaryNum += (binaryStr.charAt(i) - '0')*m;
-				m*=2;
-			}
-			
-			m = 1;
-			for(int i=threeStr.length()-1; i>=0; i--) {
-				threeNum += (threeStr.charAt(i) - '0')*m;
-				m*=3;
-			}
-			
-			m = 1;
-			for(int i=binaryStr.length()-1; i>=0; i--) {				
-				if((binaryStr.charAt(i) - '0') == 0) { // 0인 경우 ---> 1로 변경 
-					binary2Tens[binaryIdx++] = binaryNum+m;
-				} else { // 1인 경우 0으로 변경
-					binary2Tens[binaryIdx++] = binaryNum-m;
-				}
+			for(int i=binaryStr.length()-1; i>=0; i--) {
+				// 0인 경우 ---> 1로 변경, 1인 경우 ---> 0으로 변경
+				binary2Tens[binaryIdx++] = (binaryStr.charAt(i) - '0') == 0 ? binaryNum+m : binaryNum-m;
 				m*=2;
 			}
 			
@@ -65,11 +64,6 @@ public class JungsikBankingBusiness_4366 {
 				}
 				m*=3;
 			}
-			
-//			System.out.println(Arrays.toString(binary2Tens));
-//			System.out.println(Arrays.toString(three2Tens));
-//			System.out.println(binaryNum);
-//			System.out.println(threeNum);
 			
 			int result = 0;
 			

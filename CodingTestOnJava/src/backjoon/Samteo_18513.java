@@ -1,16 +1,23 @@
+/**
+ * Backjoon - 18513. 샘터
+ * Samteo_18513.java
+ * @date 2020-09-05
+ * @author hansolKim
+ **/
+
 package backjoon;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Algo3_서울_6반_김한솔 {
+public class Samteo_18513 {
 
 	public static void main(String[] args) throws Exception{
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		int answer = 0;
+		long answer = 0;
 		boolean[][][] build = new boolean[2][10001][10001]; // 음수와 양수구분, 1억을 쪼개서 사용 10000*10000
 		
 		int N = Integer.parseInt(st.nextToken()); // 치킨 집의 수 입력
@@ -60,6 +67,7 @@ public class Algo3_서울_6반_김한솔 {
 				chickenPosition = (chickenFirstIdx[idx] == 0) ? chickenPosition : chickenPosition*(-1); // 음수 양수 확인
 				
 				int homePosition = chickenPosition+dist; // 해당 치킨집의 오른쪽 확인
+				System.out.println(homePosition);
 				
 				if(homePosition<100000000) { // 범위를 초과한 경우
 					if(homePosition >= 0) { // 새로 집지을 위치가 양수위치인 경우
@@ -99,7 +107,7 @@ public class Algo3_서울_6반_김한솔 {
 				}
 				if(K == 0) { break main;} // 모든 집을 다 지은 경우
 				homePosition = chickenPosition-dist; // 해당 치킨집의 왼쪽 확인
-				
+				System.out.println(homePosition);
 				if(homePosition>-100000000) { // 범위를 초과한 경우
 					if(homePosition >= 0) { // 새로 집지을 위치가 양수위치인 경우
 						if(homePosition <= 10000) {

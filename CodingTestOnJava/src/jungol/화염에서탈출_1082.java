@@ -84,7 +84,7 @@ public class 화염에서탈출_1082 {
 		int[] dx = {1, -1, 0, 0};
 		int[] dy = {0, 0, -1, 1};
 
-		// 1. 재우의 위치 삽입
+		// 재우의 위치 삽입
 		queue.offer(new Point(jX, jY, JAEWOO, 0));
 		
 		while(!queue.isEmpty()) {
@@ -97,10 +97,12 @@ public class 화염에서탈출_1082 {
 				
 				if(nx<0 || nx>=R || ny<0 || ny>=C) continue; // 이동범위를 벗어난 경우
 				
-				if(p.getType() == FIRE && map[nx][ny] == '.') { // 현재 p객체가 불이고 비어있는 칸인경우(불을 옮길 수 있는 경우)
+				/* 현재 p객체가 불이고 비어있는 칸인경우(불을 옮길 수 있는 경우) */
+				if(p.getType() == FIRE && map[nx][ny] == '.') { 
 					map[nx][ny] = '*';
 					queue.offer(new Point(nx, ny, FIRE, p.getTime()+1));
 				} 
+				
 				/* 현재 p객체가 재우이고 방문하지 않은 칸이며 이동할 수 있는 곳(비어있는 칸이거나 D(용사의 집))인 경우 */
 				else if(p.getType() == JAEWOO && !visited[nx][ny] && (map[nx][ny] == '.' || map[nx][ny] == 'D')) {
 					if(map[nx][ny] =='D') { // 이동한 칸이 용사의 집인 경우

@@ -67,17 +67,19 @@ public class Samteo_18513 {
 				chickenPosition = (chickenFirstIdx[idx] == 0) ? chickenPosition : chickenPosition*(-1); // 음수 양수 확인
 				
 				int homePosition = chickenPosition+dist; // 해당 치킨집의 오른쪽 확인
-				System.out.println(homePosition);
 				
-				if(homePosition<100000000) { // 범위를 초과한 경우
+				
+				if(homePosition <= 100000000) { 
 					if(homePosition >= 0) { // 새로 집지을 위치가 양수위치인 경우
 						if(homePosition <= 10000) {
 							if(!build[0][0][homePosition]) { // 해당 위치에 집을 지을 수 있는 경우
 								build[0][0][homePosition] = true; // 집을 지었음을 표기
+								System.out.println("0 0 "+homePosition);
 								answer += dist; // 치킨집과의 거리 추가
 								K--; // 지어야하는 집의 갯수 -1
 							}
 						} else {
+							System.out.println(homePosition);
 							int second = homePosition/10000;
 							int third = homePosition%10000;
 							if(!build[0][second][third]) {
@@ -98,6 +100,7 @@ public class Samteo_18513 {
 							int second = homePosition/10000;
 							int third = homePosition%10000;
 							if(!build[1][second][third]) {
+								
 								build[1][second][third] = true;
 								answer += dist;
 								K--;
@@ -107,8 +110,7 @@ public class Samteo_18513 {
 				}
 				if(K == 0) { break main;} // 모든 집을 다 지은 경우
 				homePosition = chickenPosition-dist; // 해당 치킨집의 왼쪽 확인
-				System.out.println(homePosition);
-				if(homePosition>-100000000) { // 범위를 초과한 경우
+				if(homePosition>=-100000000) { 
 					if(homePosition >= 0) { // 새로 집지을 위치가 양수위치인 경우
 						if(homePosition <= 10000) {
 							if(!build[0][0][homePosition]) {

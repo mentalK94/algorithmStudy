@@ -73,8 +73,6 @@ public class ProtectiveFilm_2112 {
 				stringBuilder.append(state);
 				convertMap(stringBuilder.toString());
 				if(isCheck()) {
-					// System.out.println(Arrays.toString(isSelected));
-					// System.out.println(stringBuilder.toString());
 					answer = selectedCnt;
 					return;
 				}

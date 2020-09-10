@@ -51,7 +51,6 @@ public class ShortestRoute_1753 {
 		int start = Integer.parseInt(br.readLine());
 		dist = new int[v+1];
 		visited = new boolean[v+1];
-		list = new ArrayList[v+1];
 		
 		for(int i=1; i<=v; i++) {
 			list[i] = new ArrayList<>();

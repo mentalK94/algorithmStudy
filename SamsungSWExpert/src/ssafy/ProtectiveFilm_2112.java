@@ -1,3 +1,10 @@
+/**
+ * Samsung SW Expert - 2112. 보호필름
+ * ProtectiveFilm_2112.java
+ * @date 2020-08-24
+ * @author hansolKim
+ * */
+
 package ssafy;
 
 import java.io.BufferedReader;
@@ -8,7 +15,7 @@ import java.util.StringTokenizer;
 public class ProtectiveFilm_2112 {
 
 	private static StringBuilder sb;
-	private static int answer, D, W, K, count; // D: 두께, W: 길이, K: 합격기준
+	private static int answer, D, W, K; // D: 두께, W: 길이, K: 합격기준
 	private static int[][] map, temp;
 	private static boolean[] isSelected;
 	
@@ -49,7 +56,6 @@ public class ProtectiveFilm_2112 {
 		map = new int[D][W];
 		temp = new int[D][W];
 		isSelected = new boolean[D];
-		count = 0;
 	}
 	
 	/* 부분집합 */
@@ -95,7 +101,7 @@ public class ProtectiveFilm_2112 {
 		int stateIdx = 0;
 		
 		for(int i=0; i<D; i++) {
-			if(isSelected[i]) { // 해당 열이 true인 경우
+			if(isSelected[i]) { // 해당 열이 true인 경우 {t, t, t, t, f, f} -> (0000) ~ (1111)
 				for(int j=0; j<W; j++) {
 					temp[i][j] = state.charAt(stateIdx)-'0';
 				}

@@ -1,5 +1,5 @@
 /**
- * Samsung SW Expert - 2117. 홈 방범 서비스(정답)
+ * Samsung SW Expert - 2117. 홈 방범 서비스
  * HomePreventionService_2117.java
  * @date 2020-09-10
  * @author hansolKim
@@ -9,7 +9,6 @@ package ssafy;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;

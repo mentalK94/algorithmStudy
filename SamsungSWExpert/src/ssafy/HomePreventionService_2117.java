@@ -67,8 +67,8 @@ public class HomePreventionService_2117 {
 		int cnt = map[x][y]; /// 집 개수 누적
 		while(!q.isEmpty()) {
 			for(int K=1; K<2*N; K++) {
-				int price = M*cnt-((K*K) + (K-1)*(K-1));
-				if(price >=0) max = Math.max(max, cnt);
+				int price = M*cnt-((K*K) + (K-1)*(K-1)); // 보안회사 이익 : 집을 통해 얻는 수익 - 운영 비용 
+				if(price >=0) max = Math.max(max, cnt); // 이익일 때 집 갯수 최대값 갱신
 				int size = q.size();
 				for(int s=0; s<size; s++) {
 					int[] xy = q.poll();

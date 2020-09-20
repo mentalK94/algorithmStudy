@@ -1,3 +1,10 @@
+/**
+ * Backjoon - 2563. 색종이
+ * ColoredPaper_2563.java
+ * @date 2020-09-20
+ * @author hansolKim
+ **/
+
 package backjoon;
 
 import java.io.BufferedReader;

@@ -74,7 +74,7 @@ public class StartTaxi_19238 {
 				noAnswer = true;
 				break;
 			}
-			for(int j=0; j<M; j++) {
+			for(int j=i; j<M; j++) {
 				if(i == j || finished[j]) continue;				
 				
 				int tempDist = dist(taxiX, taxiY, person[j][0], person[j][1]);
@@ -112,7 +112,7 @@ public class StartTaxi_19238 {
 			}
 			
 			// 승객 번호 방문처리
-			System.out.println(targetIdx);
+			//System.out.println(targetIdx);
 			finished[targetIdx] = true;
 
 			// fuel 계산

@@ -71,7 +71,7 @@ public class AdultShark_19237 {
 		int dx[] = { -1, 1, 0, 0 };
 		int dy[] = { 0, 0, -1, 1 };
 
-		while (t <= 1000) {
+		while (t < 1000) {
 			t++; // 시간 증가
 
 			// 1. 자신의 위치에서 자신의 냄새를 뿌림

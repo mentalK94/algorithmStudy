@@ -13,15 +13,15 @@ import java.io.InputStreamReader;
 public class MakeOne_1463 {
 
 	private static int[] memory;
-	
+
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		
+
 		int N = Integer.parseInt(br.readLine());
-		memory = new int[N+1];
-		
+		memory = new int[N + 1];
+
 		System.out.println(makeOne(N));
-		
+		br.close();
 	}
 
 	private static int makeOne(int n) {
@@ -30,8 +30,17 @@ public class MakeOne_1463 {
 			return memory[n];
 		}
 		memory[n] = makeOne(n-1) + 1;
-		if(n%3 == 0) {memory[n] = Math.min(memory[n], makeOne(n/3) + 1);}
-		if(n%2 == 0) {memory[n] = Math.min(memory[n], makeOne(n/2) + 1);}
+		if(n%3 == 0) {
+			int temp = makeOne(n/3) + 1;
+			if(memory[n] > temp)
+				memory[n] = temp;	
+		}
+		if(n%2 == 0) {
+			int temp = makeOne(n/2) + 1;
+			if(memory[n] > temp)
+				memory[n] = temp;	
+		}
+		
 		return memory[n];
 	}
 

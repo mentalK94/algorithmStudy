@@ -13,22 +13,15 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-import javax.xml.ws.Holder;
-
 class Board {
 	int[] redBall = new int[2];
 	int[] blueBall = new int[2];
-	char[][] map;
-	int time = 0;
+	int time;
 	
-	public Board(char[][] map, int[] redBall, int[] blueBall) {
+	public Board(int[] redBall, int[] blueBall, int time) {
 		this.redBall = redBall;
 		this.blueBall = blueBall;
-		
-		this.map = new char[map.length][];
-		for(int i=0; i<map.length; i++) {
-			this.map[i] = map[i].clone();
-		}
+		this.time = time;
 	}
 }
 
@@ -71,88 +64,83 @@ public class ExitBead2_13460 {
 		
 		int[] dx = {-1,1,0,0};
 		int[] dy = {0,0,-1,1};
+		boolean[][][][] redVisited = new boolean[10][10][10][10];
+		//boolean[][] blueVisited = new boolean[10][10];
+		redVisited[redX][redY][blueX][blueY] = true;
+		//blueVisited[blueX][blueY] = true;
 		
 		Queue<Board> boards = new LinkedList<>();
-		boards.add(new Board(map, new int[] {redX, redY}, new int[] {blueX, blueY})); // 빨간공의 위치, 횟수
+		boards.add(new Board(new int[] {redX, redY}, new int[] {blueX, blueY}, 0)); // 빨간공, 파란공의 위치, 횟수
 		
+		int result = -1;
 		while(!boards.isEmpty()) {
 			Board board = boards.poll();
 			
-			int time = board.time;
+			// System.out.println(board.redBall[0] +" " + board.redBall[1] + " " + board.blueBall[0] + " " + board.blueBall[1]);
+			// 횟수가 10회가 넘은 경우
+			if(board.time > 10) break;
 			
-			// board에서 빨간 공 기준으로 벽이 아닌 경우 이동
+			// 빨간 공은 구멍으로 들어가고 파란 공은 들어가지 못한 경우 ---> 현재 횟수 
+			if(map[board.redBall[0]][board.redBall[1]] == 'O' && map[board.blueBall[0]][board.blueBall[1]] != 'O') {
+				result = board.time;
+				break;
+			}
+			
 			for(int i=0; i<4; i++) {
-				int nx = board.redBall[0] + dx[i];
-				int ny = board.redBall[1] + dy[i];
+				int nxRed = board.redBall[0];
+				int nyRed = board.redBall[1];
+				int nxBlue = board.blueBall[0];
+				int nyBlue = board.blueBall[1];
 				
-				// 가는 방향이 벽이면 패스
-				if(map[nx][ny] == '#') continue;
+				// 현재위치가 구멍이거나 벽이 아닌경우 계속이동
+				while(map[nxRed][nyRed] != '#' && map[nxRed][nyRed] != 'O') {
+					nxRed += dx[i];
+					nyRed += dy[i];
+				}
 				
-				blueX = board.blueBall[0];
-				blueY = board.blueBall[1];
-				redX = board.redBall[0];
-				redY = board.redBall[1];
+				// 현재위치가 벽인 경우 한칸 반대로 이동
+				if(map[nxRed][nyRed] == '#') {
+					nxRed -= dx[i];
+					nyRed -= dy[i];
+				}
 				
-				// 만약 바로 옆에 파란 공인 경우 --> 파란 공부터 진행
-				if(board.map[nx][ny] == 'B') {
-					if(map[nx+dx[i]][ny+dy[i]] == '#') continue; // 파란 공의 진행방향에  벽이 있으면 패스					
+				// 현재위치가 구멍이거나 벽이 아닌경우 계속이동
+				while(map[nxBlue][nyBlue] != '#' && map[nxBlue][nyBlue] != 'O') {
+					nxBlue += dx[i];
+					nyBlue += dy[i];
+				}
+				
+				// 현재위치가 벽인 경우 한칸 반대로 이동
+				if(map[nxBlue][nyBlue] == '#') {
+					nxBlue -= dx[i];
+					nyBlue -= dy[i];
+				}
+				
+				// 빨간 공과 파란 공이 같은 공간에 위치한 경우 --> 어떤 공이 더 멀리서 왔는지 탐색 후 그 공을 한 칸 반대로 이동
+				if(nxRed == nxBlue && nyRed == nyBlue && map[nxRed][nyRed] != 'O') {
+					int rDist = Math.abs(nxRed-board.redBall[0]) + Math.abs(nyRed-board.redBall[1]);
+					int bDist = Math.abs(nxBlue-board.blueBall[0]) + Math.abs(nyBlue-board.blueBall[1]);
 					
-					// 파란 공부터 진행
-					while(map[blueX+dx[i]][blueY+dy[i]] != '#') {
-						blueX += dx[i];
-						blueY += dy[i];
-						if(map[blueX][blueY] == 'O') {
-							return -1;
-						}
-					}
-					
-					// 빨간 공 진행
-					while(map[redX+dx[i]][redY+dy[i]] != '#') {
-						redX += dx[i];
-						redY += dy[i];
-						if(map[redX][redY] == 'O') {
-							return time+1;
-						}
-					}
-					
-				} else {
-					
-					boolean success = false;
-					// 빨간 공 진행
-					while(map[redX+dx[i]][redY+dy[i]] != '#') {
-						redX += dx[i];
-						redY += dy[i];
-						if(map[redX][redY] == 'O') {
-							success = true;
-						}
-					}
-					// 파란 공부터 진행
-					while(map[blueX+dx[i]][blueY+dy[i]] != '#') {
-						blueX += dx[i];
-						blueX += dy[i];
-						if(map[blueX][blueY] == 'O') {
-							return -1;
-						}
-					}
-					
-					if(success) {
-						return time+1;
+					if(rDist > bDist) {
+						nxRed -= dx[i];
+						nyRed -= dy[i];
+					} else {
+						nxBlue -= dx[i];
+						nyBlue -= dy[i];
 					}
 				}
 				
-				board.map[board.blueBall[0]][board.blueBall[1]] = '.';
-				board.map[board.redBall[0]][board.redBall[1]] = '.';
-				board.map[redX][redY] = 'R';
-				board.map[blueX][blueY] = 'B';
-				board.time = time+1;
-				
-				boards.add(board);
-				
+				// 두 구슬중에 한 곳이라도 방문된 적이 없으면 방문 표기
+				if(!redVisited[nxRed][nyRed][nxBlue][nyBlue]) {
+					redVisited[nxRed][nyRed][nxBlue][nyBlue] = true;
+					//blueVisited[nxBlue][nyBlue] = true;
+					boards.add(new Board(new int[] {nxRed, nyRed}, new int[] {nxBlue, nyBlue}, board.time+1));
+				}
 			}
 			
 		}
 		
-		return -1;
+		return result;
 	}
 
 }

@@ -67,10 +67,7 @@ public class JuvenileShark_19236 {
 		}
 		
 		Fish[] tempFishList = new Fish[17];
-		for(int i=1; i<=16; i++) {
-			if(fishList[i] != null)
-				tempFishList[i] = new Fish(fishList[i].x, fishList[i].y, fishList[i].dir);	
-		}
+		tempFishList = fishList.clone();
 		
 		// 물고기 움직임 구현
 		moveFish(tempMap, tempFishList);

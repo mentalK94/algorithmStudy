@@ -63,14 +63,6 @@ public class TwoZeroFourEight_12100 {
 
 			// 현재 i번째 방향적용으로 블록 이동
 			moveBlock(tempMap, i);
-			
-//			if(cnt == 3) {
-//				System.out.println(i+"방향 " + cnt+"회");
-//				for (int j = 0; j < N; j++) {
-//					System.out.println(Arrays.toString(tempMap[j]));
-//				}
-//				System.out.println();
-//			}
 
 			// 변경사항 적용 후
 			game(tempMap, cnt + 1);

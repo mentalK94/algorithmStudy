@@ -70,7 +70,7 @@ public class Snake_3190 {
 
 		while (true) {
 			
-			// 0. 시간 증가
+			// 1. 시간 증가
 			sec++;
 
 			// 2. 현재 방향으로 한 칸 앞 확인
@@ -83,17 +83,17 @@ public class Snake_3190 {
 				break;
 			}
 
-			// 4. 이동할 수 있는 경우 한 칸앞의 값이 사과인지 확인
-			if (map[nx][ny] != 1) { // 4-1. 사과인 경우 ---> 사과표시 제거
+			// 3. 이동할 수 있는 경우 한 칸앞의 값이 사과인지 확인
+			if (map[nx][ny] != 1) { // 3-1. 사과인 경우 ---> 사과표시 제거
 				int[] delete = snake.pollFirst();
 				map[delete[0]][delete[1]] = 0;
-			} // 4-2. 사과가 아닌 경우 ---> snake큐에서 맨 앞 위치정보 제거
+			} // 3-2. 사과가 아닌 경우 ---> snake큐에서 맨 앞 위치정보 제거
 
 			map[nx][ny] = 2;
 			snake.addLast(new int[] { nx, ny });
 
-			// 1. 방향정보를 가져와 방향을 전환해야 하는 지 확인
-			// 1-1. 방향이 바뀌는 경우
+			// 4. 방향정보를 가져와 방향을 전환해야 하는 지 확인
+			// 4-1. 방향이 바뀌는 경우
 			if (dirsIdx < dirs.size() && sec == dirs.get(dirsIdx).time) {
 
 				if (dirs.get(dirsIdx).dir == 'D') { // 오른쪽으로 90도 회전

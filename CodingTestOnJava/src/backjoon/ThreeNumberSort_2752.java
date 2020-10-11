@@ -1,3 +1,4 @@
+package backjoon;
 /**
  * Backjoon - 2752. 세 수 정렬
  * ThreeNumberSort_2752.java

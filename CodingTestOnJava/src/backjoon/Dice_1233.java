@@ -1,6 +1,6 @@
 /**
- * Backjoon - 1225. 이상한 곱셈
- * AnomalyMultiple_1225.java
+ * Backjoon - 1233. 주사위
+ * Dice_1233.java
  * @date 2020-10-12
  * @author hansolKim
  **/

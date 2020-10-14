@@ -76,6 +76,12 @@ class Cubing_5373 {
 
 			for (int i = 0; i < n; i++) {
 				move(tempCube, command[i].charAt(0), command[i].charAt(1));
+				for(int j=3; j<6; j++) {
+					for(int k=3; k<6; k++) {
+						System.out.print(tempCube[j][k] + " ");
+					}
+					System.out.println();
+				}
 			}
 
 			// 맨 윗면 저장

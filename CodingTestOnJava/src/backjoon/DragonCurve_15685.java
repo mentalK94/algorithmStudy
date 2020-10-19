@@ -10,15 +10,13 @@ package backjoon;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class DragonCurve_15685 {
 
 	static boolean[][] map;
-	static int[] dx = {0,-1,0,1};
-	static int[] dy = {1,0,-1,0};
-	static int generation, d;
+	static int[] dx = {1,0,-1,0};
+	static int[] dy = {0,-1,0,1};
 	
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -31,12 +29,11 @@ public class DragonCurve_15685 {
 			
 			int startX = Integer.parseInt(st.nextToken());
 			int startY = Integer.parseInt(st.nextToken());			
-			d = Integer.parseInt(st.nextToken());
-			generation = Integer.parseInt(st.nextToken());
+			int d = Integer.parseInt(st.nextToken());
+			int generation = Integer.parseInt(st.nextToken());
 			
 			map[startX][startY] = true;
-			dragonCurve(startX, startY);
-			System.out.println();
+			dragonCurve(startX, startY, d, generation);
 		}
 		
 		int answer = 0;
@@ -53,24 +50,22 @@ public class DragonCurve_15685 {
 		System.out.println(answer);
 	}
 
-	private static void dragonCurve(int x, int y) {
+	private static void dragonCurve(int x, int y, int d, int generation) {
 		
-		Stack<Integer> dirStack = new Stack<>();
-		dirStack.add(d);
-		int curX = x;
-		int curY = y;
+		ArrayList<Integer> dirs = new ArrayList<>();
+		dirs.add(d);
+		int curX = x + dx[d];
+		int curY = y + dy[d];
+		map[curX][curY] = true;
 		
-		for(int i=0; i<=generation; i++) {
-			ArrayList<Integer> originDirs = new ArrayList<>();
-			ArrayList<Integer> newDirs = new ArrayList<>();
-			while(!dirStack.isEmpty()) {
-				int dir = dirStack.pop();
-				System.out.println(dir);
-				originDirs.add(dir);
+		for(int i=1; i<=generation; i++) {
+			
+			for(int j=dirs.size()-1; j>=0; j--) {
+				int dir = dirs.get(j);
 				
 				// 원본 방향전환
 				int newDir = (dir+1)%4;
-				newDirs.add(newDir);
+				dirs.add(newDir);
 				
 				curX = curX + dx[newDir];
 				curY = curY + dy[newDir];
@@ -78,17 +73,9 @@ public class DragonCurve_15685 {
 				if(curX<0 || curX>=101 || curY<0 || curY>=101) continue;
 				
 				map[curX][curY] = true;
+				
 			}
-						
-			for(int j=originDirs.size()-1; j>=0; j--) {
-				dirStack.add(originDirs.get(j));
-			}
-			
-			for(int j=originDirs.size()-1; j>=0; j--) {
-				dirStack.add(newDirs.get(j));
-			}
-			
-			System.out.println();
+		
 		}
 	}
 

@@ -57,8 +57,12 @@ public class KruskalTest {
 		for(int i=0; i<edges.length; i++) {
 			if(select == V-1) { break;}
 			if(union(edges[i].from, edges[i].to)) {
+				System.out.println(edges[i].weight);
 				minWeight+=edges[i].weight;
 				select++;
+				/*for(int j=1; j<=V; j++) {
+					System.out.print(parents[j] + " ");
+				}*/
 			}
 		}
 		

@@ -92,7 +92,7 @@ public class MakeConstellation_4386 {
 	}
 
 	static double getDist(double x, double y, double tX, double tY) {
-		return Math.sqrt(Math.pow(Math.abs(x-tX), 2.0) + Math.pow(Math.abs(y-tY), 2.0));
+		return Math.sqrt(Math.pow(Math.abs(x-tX), 2) + Math.pow(Math.abs(y-tY), 2));
 	}
 	
 	static int getParents(int a) {

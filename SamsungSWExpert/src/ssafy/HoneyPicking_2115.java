@@ -16,7 +16,7 @@ public class HoneyPicking_2115 {
 	
 	static StringBuilder sb;
 	static int N, M, C, answer, tempA, tempB;
-	static int[][] map;
+	static int[][] map, memory;
 	static boolean[][] checked;
 	static boolean[] selected;
 	static ArrayList<Integer> list;
@@ -35,6 +35,7 @@ public class HoneyPicking_2115 {
 			C = Integer.parseInt(st.nextToken());
 			
 			map = new int[N][N];
+			memory = new int[N][N];
 			checked = new boolean[N][N];
 			list = new ArrayList<>();
 			
@@ -47,22 +48,28 @@ public class HoneyPicking_2115 {
 			
 			answer = 0;
 			
-			main1:for(int i=0; i<N; i++) {
-				for(int j=0; j<N; j++) {
-					if(j+M-1>=N) continue main1; // 범위를 초과한 경우
-					
+			for(int i=0; i<N; i++) {
+				for(int j=0; j+M-1<N; j++) {
 					for(int l=0; l<M; l++) { checked[i][j+l] = true; }
 					
-					main2:for(int k=i; k<N; k++) {
-						for(int t=0; t<N; t++) {
+					for(int k=i; k<N; k++) {
+						for(int t=0; t+M-1<N; t++) {
 							if(checked[k][t]) continue;
-							if(t+M-1>=N) continue main2;
-							
 							selected = new boolean[M];
 							tempA = 0;
 							tempB = 0;
-							subSet(i, j, 0, 0);
-							subSet(k, t, 0, 1);
+							if(memory[i][j] != 0) { tempA = memory[i][j]; }
+							else {
+								subSet(i, j, 0, 0);
+								memory[i][j] = tempA;
+							}
+							
+							if(memory[k][t] != 0) { tempB = memory[k][t]; }
+							else {
+								subSet(k, t, 0, 1);
+								memory[k][t] = tempB;
+							}
+							
 							if(tempA+tempB>answer) {
 								answer = tempA+tempB;
 							}

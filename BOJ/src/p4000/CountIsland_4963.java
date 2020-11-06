@@ -1,6 +1,6 @@
 /**
  * Backjoon - 4963. 섬의 갯수
- * CountIsland.java
+ * CountIsland_4963.java
  * @date 2020-08-05
  * @author hansolKim
  **/

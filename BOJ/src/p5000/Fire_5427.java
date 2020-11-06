@@ -1,11 +1,11 @@
 /**
- * Backjoon - 4179. 불
- * Fire_4179.java
+ * Backjoon - 5427. 불
+ * Fire_5427.java
  * @date 2020-11-06
  * @author hansolKim
  **/
 
-package p4000;
+package p5000;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -13,7 +13,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class Fire_4179 {
+public class Fire_5427 {
 	
 	static int R, C, jX, jY;
 	static int[] dx = {-1,1,0,0};
@@ -24,32 +24,39 @@ public class Fire_4179 {
 
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
 		
-		R = Integer.parseInt(st.nextToken());
-		C = Integer.parseInt(st.nextToken());
+		int T = Integer.parseInt(br.readLine());
 		
-		map = new char[R][C];
-		visited = new boolean[R][C];
-		q = new LinkedList<>();
-		
-		for(int i=0; i<R; i++) {
-			String str = br.readLine();
-			for(int j=0; j<C; j++) {
-				map[i][j] = str.charAt(j);
-				if(map[i][j] == 'J') {
-					jX = i; jY = j;
-					map[i][j] = '.';
-				}
-				if(map[i][j] == 'F') {
-					q.add(new int[] {i,j,1,0}); // (x,y,type,cnt)
+		StringBuilder sb = new StringBuilder();
+		for(int tc=1; tc<=T; tc++) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			
+			C = Integer.parseInt(st.nextToken());
+			R = Integer.parseInt(st.nextToken());
+			
+			map = new char[R][C];
+			visited = new boolean[R][C];
+			q = new LinkedList<>();
+			
+			for(int i=0; i<R; i++) {
+				String str = br.readLine();
+				for(int j=0; j<C; j++) {
+					map[i][j] = str.charAt(j);
+					if(map[i][j] == '@') {
+						jX = i; jY = j;
+						map[i][j] = '.';
+					}
+					if(map[i][j] == '*') {
+						q.add(new int[] {i,j,1,0}); // (x,y,type,cnt)
+					}
 				}
 			}
+			
+			int result = exit();
+			String answer = result==-1?"IMPOSSIBLE":String.valueOf(result);
+			sb.append(answer).append("\n");
 		}
-		
-		int result = exit();
-		String answer = result==-1?"IMPOSSIBLE":String.valueOf(result);
-		System.out.println(answer);
+		System.out.println(sb);
 		br.close();
 	}
 
@@ -86,7 +93,7 @@ public class Fire_4179 {
 					// 영역 밖이거나 벽인 경우
 					if(nx<0 || nx>=R || ny<0 || ny>=C || map[nx][ny] != '.') continue;
 					
-					map[nx][ny] = 'F';
+					map[nx][ny] = '*';
 					q.add(new int[] {nx, ny, type, cnt+1});
 				}
 			}

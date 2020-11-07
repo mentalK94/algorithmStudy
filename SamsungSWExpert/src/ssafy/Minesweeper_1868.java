@@ -2,7 +2,7 @@
  * Samsung SW Expert - 1868. 파핑파핑 지뢰찾기
  * Minesweeper_1868.java
  * @date 2020-11-05
- * @time 16:40 ~ 
+ * @time 16:40 ~ 18:00
  * @author hansolKim
  * */
 
@@ -110,7 +110,6 @@ public class Minesweeper_1868 {
 				}
 			}
 		}
-		
 		return cnt;
 	}
 

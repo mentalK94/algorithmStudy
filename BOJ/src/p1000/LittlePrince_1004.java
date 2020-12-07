@@ -53,7 +53,6 @@ public class LittlePrince_1004 {
 		bw.flush();
 		bw.close();
 		br.close();
-
 	}
 
 	private static double getDist(int cx, int cy, int x, int y) {

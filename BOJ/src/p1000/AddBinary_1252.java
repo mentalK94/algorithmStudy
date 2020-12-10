@@ -1,7 +1,8 @@
 /**
  * Backjoon - 1252. 이진수 덧셈
  * AddBinary_1252.java
- * @date 2020-10-12
+ * @date 2020-10-12 (도전)
+ * @date 2020-12-10 (해결)
  * @author hansolKim
  **/
 
@@ -20,85 +21,42 @@ public class AddBinary_1252 {
 		String a = st.nextToken();
 		String b = st.nextToken();
 		
-		StringBuilder sb = new StringBuilder();
-		for(int i=a.length()-1; i>=0; i--) {
-			sb.append(a.charAt(i));
-		}
+		int size = a.length() > b.length() ? a.length() : b.length();
+
+		int[] numArrayA = new int[size];
+		int[] numArrayB = new int[size];
 		
-		a = sb.toString();
-		sb.replace(0, sb.length(), "");
+		int[] result = new int[size+1];
+		
+		for(int i=a.length()-1; i>=0; i--) {
+			numArrayA[a.length()-i-1] = a.charAt(i)-'0';
+		}
 		
 		for(int i=b.length()-1; i>=0; i--) {
-			sb.append(b.charAt(i));
+			numArrayB[b.length()-i-1] = b.charAt(i)-'0';
 		}
 		
-		b = sb.toString();
-		sb.replace(0, sb.length(), "");
-
-		int size = a.length() < b.length() ? a.length() : b.length();
-
-		boolean flag = false;
-		for (int i = 0; i < size; i++) {
-			if (a.charAt(i) == '1' && b.charAt(i) == '1') {
-				if (flag) {
-					sb.append("1");
-				} else {
-					sb.append("0");
-				}
-				flag = true;
-			} else if (a.charAt(i) == '1' || b.charAt(i) == '1') {
-				if (flag) {
-					sb.append("0");
-					flag = true;
-				} else {
-					sb.append("1");
-				}
-			} else {
-				if (flag) {
-					sb.append("1");
-					flag = false;
-				} else {
-					sb.append("0");
-				}
-			}
-		}
-
-		int idx = size;
-		String longNumber = a.length() > b.length() ? a : b;
-		while (idx < longNumber.length()) {
-			if(flag) {
-				if(longNumber.charAt(idx) == '1') {
-					sb.append("0");
-					flag = true;
-				} else {
-					sb.append("1");
-				}
-			} else {
-				if(longNumber.charAt(idx) == '1') {
-					sb.append("1");
-				} else {
-					sb.append("0");
-				}
-			}
-			idx++;
-		}
-		
-		if(flag) {sb.append("1");}
-		
-		boolean zero = true;
-		for(int i=0; i<sb.length(); i++) {
-			if(sb.charAt(i) != '0') {
-				zero = false;
-				break;
+		for(int i=0; i<size; i++) {
+			result[i] += (numArrayA[i] + numArrayB[i]);
+			if(result[i] >= 2) {
+				result[i+1] = 1;
+				result[i] -= 2;
 			}
 		}
 		
-		if(zero) {
-			System.out.println(0);
-			return;
+		StringBuilder sb = new StringBuilder();
+		
+		for(int i=0; i<result.length; i++) {
+			sb.append(result[i]);
+		}
+		
+		while(sb.length() > 1) {
+			if(sb.charAt(sb.length()-1) == '1') { break; }
+			sb.replace(sb.length()-1, sb.length(), "");
 		}
 		
 		System.out.println(sb.reverse().toString());
+		
 	}
 
 }

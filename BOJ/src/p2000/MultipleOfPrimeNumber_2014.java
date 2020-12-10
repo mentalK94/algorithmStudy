@@ -47,7 +47,10 @@ public class MultipleOfPrimeNumber_2014 {
 				long num = (long)curNum*primeNumber[j]; 
 				if(num >= Integer.MAX_VALUE) {break;}				
 				pq.add((int) num);
-				if(curNum % primeNumber[j] == 0) { break; }
+				if(curNum % primeNumber[j] == 0) {
+					System.out.println(curNum);
+					break; 					
+				}
 			}
 			
 		}
@@ -60,5 +63,4 @@ public class MultipleOfPrimeNumber_2014 {
 		bw.close();
 		br.close();
 	}
-
 }

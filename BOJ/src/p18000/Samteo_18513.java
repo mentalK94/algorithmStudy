@@ -15,16 +15,13 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Samteo_18513 {
-
-	final static int LEFT = -100000000;
-	final static int RIGHT = 100000000;
 	
 	public static void main(String[] args) throws Exception{
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		long answer = 0;
-		boolean[][][] build = new boolean[2][10001][10001]; // 음수와 양수구분, 1억을 쪼개서 사용 10000*10000
+		boolean[][][] build = new boolean[2][10011][10001]; // 음수와 양수구분, 1억을 쪼개서 사용 10000*10000
 		
 		int N = Integer.parseInt(st.nextToken()); // 치킨 집의 수 입력
 		int K = Integer.parseInt(st.nextToken()); // 집의 수 입력
@@ -56,9 +53,7 @@ public class Samteo_18513 {
 			int[] info = q.poll();
 			int x = info[0]; // 위치
 			int dir = info[1]; // 방향
-			int dist = info[2]; // 거리
-			
-			if(x<LEFT || x>RIGHT) continue; // 범위를 벗어난 경우
+			int dist = info[2]; // 거리	
 			
 			int firstIdx = x>=0 ? 0:1;
 			

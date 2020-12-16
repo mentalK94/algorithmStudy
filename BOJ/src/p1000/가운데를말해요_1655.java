@@ -12,9 +12,7 @@ import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.PriorityQueue;
-import java.util.Queue;
 
 public class 가운데를말해요_1655 {
 
@@ -27,9 +25,7 @@ public class 가운데를말해요_1655 {
 		StringBuilder sb = new StringBuilder();
 		PriorityQueue<Integer> right = new PriorityQueue<>(); // 중간값보다 큰 집합
 		PriorityQueue<Integer> left = new PriorityQueue<>(Collections.reverseOrder()); // 중간값보다 작은 집합
-		Queue<Integer> q = new LinkedList<>();
 		
-		int cnt = 0;
 		// 항상 right집합보다 left집합이 1개 더많거나 같아야한다
 		for(int i=1; i<=N; i++) {
 			int num = Integer.parseInt(br.readLine());

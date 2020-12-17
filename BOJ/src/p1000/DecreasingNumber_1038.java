@@ -9,6 +9,7 @@ package p1000;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class DecreasingNumber_1038 {
 
@@ -51,6 +52,7 @@ public class DecreasingNumber_1038 {
 	private static void permutation(int cnt) {
 		if(cnt == R) {
 			CNT++;
+			System.out.println(Arrays.toString(data));
 			if(CNT == N) {
 				for(int i=0; i<data.length; i++) {
 					sb.append(data[i]);
@@ -61,7 +63,7 @@ public class DecreasingNumber_1038 {
 		}
 		
 		for(int i=0; i<10; i++) {
-			if(selected[i]) return;
+			if(selected[i]) break;
 			
 			data[cnt] = i;
 			selected[i] = true;

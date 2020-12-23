@@ -54,24 +54,24 @@ public class 색종이붙이기_17136 {
 		br.close();
 	}
 
-private static void tryPaper(int x, int y, int size, int paperCnt, int useCnt, int remain) {
+	private static void tryPaper(int x, int y, int size, int paperCnt, int useCnt, int remain) {
 	
-		if(answer <= useCnt) { return; }
+		if(answer <= useCnt) { return; } // 현재 사용한 색종이 개수가 이전에 카운팅된 개수보다 많은 경우 -> 더 이상 진행해도 최솟값이 될 수 없다.
 		
-		if(remain == 0) {
+		if(remain == 0) { // 붙여야 하는 칸이 다 사라진 경우 -> answer에 값 저장
 			answer = useCnt;
 			return;
 		}
 		
-		if(size == 0) { 
+		if(size == 0) { // 모든 색종이를 소진한 경우
 			return;
 		}
 		
-		if(paperCnt==0) { // 현재 사이즈의 종이가 없는 경우
-			tryPaper(x, y, size-1, 5, useCnt, remain); 
+		if(paperCnt==0) { // 현재 사이즈의 종이가 없는 경우 -> 크기가 한 단계 아래인 색종이 사용
+			tryPaper(0, 0, size-1, 5, useCnt, remain); 
 			return;
 		} 	
-		if(COUNT[size-1] + size*paperCnt < remain) { return; } // 현재 남은 색종이보다 붙여야 할 칸이 더 많은 경우
+		if(COUNT[size-1] + (size*size)*paperCnt < remain) { return; } // 현재 남은 색종이보다 붙여야 할 칸이 더 많은 경우
 				
 		if(x==N-size+1) { // 탐색이 끝난 경우
 			tryPaper(0, 0, size-1, 5, useCnt, remain);

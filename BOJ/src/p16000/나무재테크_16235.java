@@ -11,7 +11,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Comparator;
 import java.util.LinkedList;
-import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
@@ -21,7 +20,7 @@ public class 나무재테크_16235 {
 	static int[][] map, A; // 땅의 양분 정보, 겨울에 추가되는 양분정보
 	static int[] dx = {-1, 0, 1, -1, 1, -1, 0, 1};
 	static int[] dy = {-1, -1, -1, 0, 0, 1, 1, 1};
-	static PriorityQueue<int[]> trees;
+	static LinkedList<int[]> trees;
 	static Queue<int[]> deadTrees;
 	
 	public static void main(String[] args) throws Exception {
@@ -34,41 +33,39 @@ public class 나무재테크_16235 {
 		K = Integer.parseInt(st.nextToken());
 		
 		// 겨울에 추가되는 양분정보 입력
-		A = new int[N+1][N+1];
-		for(int i=1; i<=N; i++) {
+		// 상도의 땅 기본 세팅
+		A = new int[N][N];
+		map = new int[N][N];
+		for(int i=0; i<N; i++) {
 			st = new StringTokenizer(br.readLine());
-			for(int j=1; j<=N; j++) {
+			for(int j=0; j<N; j++) {
 				A[i][j] = Integer.parseInt(st.nextToken());
+				map[i][j] = 5; // 초기 양분의 값
 			}
 		}
 		
-		trees = new PriorityQueue<>(new Comparator<int[]>() {
-
-			@Override
-			public int compare(int[] o1, int[] o2) {
-				return Integer.compare(o1[2], o2[2]); // 나이순으로 정렬
-			}
-		});
+		trees = new LinkedList<>();
 		
 		// 상도가 심은 나무정보
 		for(int i=0; i<M; i++) {
 			st = new StringTokenizer(br.readLine());
-			int x = Integer.parseInt(st.nextToken()); // 나무의 x위치
-			int y = Integer.parseInt(st.nextToken()); // 나무의 y위치
+			int x = Integer.parseInt(st.nextToken())-1; // 나무의 x위치
+			int y = Integer.parseInt(st.nextToken())-1; // 나무의 y위치
 			int z = Integer.parseInt(st.nextToken()); // 나무의 나이
 			
 			trees.add(new int[] {x, y, z});
 		}
 		
-		// 상도의 땅 기본 세팅
-		map = new int[N+1][N+1];
-		for (int i = 1; i <= N; i++) {
-			for (int j = 1; j <= N; j++) {
-				map[i][j] = 5; // 초기 양분의 값
-			}	
-		}
-		
 		deadTrees = new LinkedList<>();
+		
+		trees.sort(new Comparator<int[]>() {
+
+			@Override
+			public int compare(int[] o1, int[] o2) {
+				return Integer.compare(o1[2], o2[2]);
+			}
+		});
+		
 		
 		while(K-->0) {
 			// 1. 봄 -> 자신의 나이만큼 양분을 먹고 나이 증가
@@ -89,37 +86,38 @@ public class 나무재테크_16235 {
 	}
 
 	private static void winter() {
-		for(int i=1; i<=N; i++) {
-			for(int j=1; j<=N; j++) {
+		for(int i=0; i<N; i++) {
+			for(int j=0; j<N; j++) {
 				map[i][j] += A[i][j];
 			}
 		}
 	}
 
 	private static void autumn() {
-		Queue<int[]> temp = new LinkedList<>();
 		
-		while(!trees.isEmpty()) {
+		Queue<int[]> temp = new LinkedList<>();
+		int size = trees.size();
+		
+		for(int i=0; i<size; i++) {
 			int x = trees.peek()[0];
 			int y = trees.peek()[1];
 			int z = trees.poll()[2];
 			
 			if(z%5 == 0) { // 5의 배수인 경우
-				for(int i=0; i<8; i++) {
-					int nx = x+dx[i];
-					int ny = y+dy[i];
+				for(int j=0; j<8; j++) {
+					int nx = x+dx[j];
+					int ny = y+dy[j];
 					
-					if(nx<=0 || nx>N || ny<=0 || ny>N) continue; // 영역 밖을 벗어난 경우
+					if(nx<0 || nx>=N || ny<0 || ny>=N) continue; // 영역 밖을 벗어난 경우
 					
 					temp.add(new int[] {nx, ny, 1});
 				}
 				
 			}
-			
-			temp.add(new int[] {x, y, z});
+			trees.add(new int[] {x, y, z});
 		}
 		
-		while(!temp.isEmpty()) { trees.add(temp.poll()); }
+		while(!temp.isEmpty()) { trees.addFirst(temp.poll()); }
 	}
 
 	private static void summer() {
@@ -133,24 +131,21 @@ public class 나무재테크_16235 {
 	}
 
 	private static void spring() {
-		Queue<int[]> temp = new LinkedList<>();
 		
-		while(!trees.isEmpty()) {
+		int size = trees.size();
+		
+		for(int i=0; i<size; i++) {
 			int x = trees.peek()[0];
 			int y = trees.peek()[1];
 			int z = trees.poll()[2];
 			
 			if(z<=map[x][y]) { // 먹을 수 있는 양분이 있는 경우
 				map[x][y] -= z;
-				temp.add(new int[] {x, y, z+1});
+				trees.add(new int[] {x, y, z+1});
 			} else { // 먹을 수 있는 양분이 없는 경우
 				deadTrees.add(new int[] {x, y, z});
 			}
 		}
 		
-		while(!temp.isEmpty()) {
-			trees.add(temp.poll());
-		}
 	}
-
 }

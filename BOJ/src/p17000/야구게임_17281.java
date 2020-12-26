@@ -13,11 +13,9 @@ import java.util.StringTokenizer;
 
 public class 야구게임_17281 {
 
-	static int N, answer;
+	static int N, answer, checked, base;
 	static int[] batOrder; // 타격 순서
 	static int[][] attackInfo; // 공격 정보
-	static boolean[] selected, base;
-	static int Count;
 
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -35,12 +33,11 @@ public class 야구게임_17281 {
 		}
 
 		batOrder = new int[10];
-		selected = new boolean[10];
-		Count = 0;
+		checked = 0;
 		answer = 0;
 		permutation(1);
-		
 		System.out.println(answer);
+
 		br.close();
 	}
 
@@ -50,31 +47,17 @@ public class 야구게임_17281 {
 			int curIdx = 1; // 1번타자부터 시작
 			for (int i = 0; i < N; i++) { // N번째 이닝까지
 				int outCount = 0; // 이닝당 아웃카운트 초기화
-				base = new boolean[4]; // 이닝당 베이스 초기화
+				base = 0; // 이닝당 베이스 초기화
 				
 				while (outCount < 3) { // 아웃카운트가 3개가 되면 이닝 증가
 					
 					// 현재 타자의 기록
 					int curResult = attackInfo[i][batOrder[curIdx]]; // 현재타자의 결과
 					
-					switch (curResult) {
-					case 0: // 아웃일때
-						outCount++;
-						break;
-					case 1: // 안타
-						score += hit(1);
-						break;
-					case 2:
-						score += hit(2);
-						break;
-					case 3:
-						score += hit(3);
-						break;
-					case 4:
-						score += hit(4);
-						break;
-					}
-					if(++curIdx == 10) { curIdx = 1;}
+					if(curResult == 0) { outCount++; } // 아웃인 경우
+					else { score += hit(curResult); } // 안타친 경우
+
+					curIdx = ++curIdx%10 == 0 ? 1 : curIdx;
 				}
 
 			}
@@ -86,12 +69,12 @@ public class 야구게임_17281 {
 		}
 
 		for (int i = 1; i <= 9; i++) {
-			if (selected[i])
+			if ((checked & 1<<i) != 0)
 				continue;
 			batOrder[cnt] = i;
-			selected[i] = true;
+			checked |= (1<<i);
 			permutation(cnt + 1);
-			selected[i] = false;
+			checked &= ~(1<<i);
 		}
 	}
 
@@ -100,18 +83,18 @@ public class 야구게임_17281 {
 		int score = 0;
 		for(int i=3; i>0; i--) {
 			// 현재 루에서 type만큼 더함
-			if(base[i]) { // 현재 베이스에 주자가 존재하는 경우
-				base[i] = false;
-				if(i+type>3) { // 홈에 들어오는 경우
+			if((base & 1<<i) != 0) { // 현재 베이스에 주자가 존재하는 경우
+				base &= ~(1<<i); // 베이스를 비워줌
+				if((i+type)>3) { // 홈에 들어오는 경우
 					score++;
 				} else {
-					base[i+type] = true;
+					base |= (1<<(i+type));
 				}
 			}
 		}
 		
 		if(type>3) score++;
-		else base[type] = true;
+		else base |= (1<<type);
 		return score;
 	}
 

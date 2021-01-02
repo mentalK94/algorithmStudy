@@ -45,6 +45,7 @@ public class 연료채우기_1826 {
 		int fuel = Integer.parseInt(st.nextToken()); // 현재 연료의 양
 		
 		int answer = 0;
+		int idx = 0;
 		
 		boolean isSuccess = true;
 		while(true) {
@@ -55,10 +56,10 @@ public class 연료채우기_1826 {
 			// 현재위치에서 갈 수 있는 모든 주유소 탐색
 			int nextIdx = -1;
 			int addFuel = -1;
-			for(int i=0; i<charges.size() && cur+fuel>=charges.get(i)[0]; i++) {
-				if(addFuel < charges.get(i)[1]) {
-					addFuel = charges.get(i)[1]; // 추가할 연료
-					nextIdx = i; // 이동할 인덱스
+			for(; idx<charges.size() && cur+fuel>=charges.get(idx)[0]; idx++) {
+				if(addFuel < charges.get(idx)[1]) {
+					addFuel = charges.get(idx)[1]; // 추가할 연료
+					nextIdx = idx; // 이동할 인덱스
 				}
 			}
 			

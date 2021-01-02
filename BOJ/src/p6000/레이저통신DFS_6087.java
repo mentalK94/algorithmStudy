@@ -58,13 +58,12 @@ public class 레이저통신DFS_6087 {
 		}
 		
 		System.out.println(answer);
-		System.out.println(cnt);
+		// System.out.println(cnt);
 	}
 
 	private static void installMirror(int x, int y, int dir, int cost) {
 		
-		if(answer <= cost) { return; }
-		cnt++;
+		if(answer <= cost) { return; }		
 		
 		if(x == raisers[1][0] && y == raisers[1][1]) {
 			answer = costs[x][y];

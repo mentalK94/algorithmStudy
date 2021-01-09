@@ -1,3 +1,10 @@
+/**
+ * Backjoon - 20364. 부동산 다툼
+ * 부동산다툼_20364.java
+ * @date 2021-01-05
+ * @author hansolKim
+ **/
+
 package p20000;
 
 import java.io.BufferedReader;

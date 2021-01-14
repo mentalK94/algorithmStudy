@@ -1,3 +1,10 @@
+/**
+ * Backjoon - 10815. 숫자 카드
+ * 숫자카드_10815.java
+ * @date 2021-01-14
+ * @author hansolKim
+ **/
+
 package p10000;
 
 import java.io.BufferedReader;
@@ -5,7 +12,6 @@ import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.HashSet;
-import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class 숫자카드_10815 {

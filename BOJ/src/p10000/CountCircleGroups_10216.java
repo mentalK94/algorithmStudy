@@ -17,9 +17,10 @@ import java.util.StringTokenizer;
 
 public class CountCircleGroups_10216 {
 	
-	static int[][] map;
+	static int[][] map, init;
 	static int[] dx = {-1,1,0,0};
 	static int[] dy = {0,0,-1,1};
+	static int limit;
 
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -34,6 +35,7 @@ public class CountCircleGroups_10216 {
 			
 			Queue<int[]> q = new LinkedList<>();
 			map = new int[10001][10001];
+			init = new int[10001][10001];
 			for(int i=0; i<N; i++) {
 				StringTokenizer st = new StringTokenizer(br.readLine());
 				int x = Integer.parseInt(st.nextToken());
@@ -42,6 +44,7 @@ public class CountCircleGroups_10216 {
 				
 				q.add(new int[] {x, y, r+1});
 				map[x][y] = r+1;
+				init[x][y] = 1;
 			}			
 			
 			while(!q.isEmpty()) {
@@ -62,11 +65,13 @@ public class CountCircleGroups_10216 {
 			}
 			
 			int answer = 0;
+			limit = N;
 			for(int i=0; i<10001; i++) {
 				for(int j=0; j<10001; j++) {
 					if(map[i][j] == 0) continue;
 					bfs(i, j);
 					answer++;
+					if(limit == 0) { break; }
 				}
 			}
 			
@@ -87,6 +92,8 @@ public class CountCircleGroups_10216 {
 		while(!q.isEmpty()) {
 			int curX = q.peek()[0];
 			int curY = q.poll()[1];
+			
+			if(init[curX][curY] == 1) { limit--;}
 			
 			for(int i=0; i<4; i++) {
 				int nx = curX + dx[i];

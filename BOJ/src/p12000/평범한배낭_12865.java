@@ -9,9 +9,6 @@ package p12000;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.StringTokenizer;
 
 public class 평범한배낭_12865 {
@@ -23,7 +20,7 @@ public class 평범한배낭_12865 {
 		int N = Integer.parseInt(st.nextToken());
 		int K = Integer.parseInt(st.nextToken());
 		
-		ArrayList<int[]> list = new ArrayList<>();
+		int[][] dp = new int[N+1][K+1];
 		
 		for(int i=0; i<N; i++) {
 			st = new StringTokenizer(br.readLine());
@@ -31,31 +28,18 @@ public class 평범한배낭_12865 {
 			int w = Integer.parseInt(st.nextToken());
 			int v = Integer.parseInt(st.nextToken());
 			
-			int size = list.size();
-			
-			for(int j=0; j<size; j++) {
-				int curW = list.get(j)[0];
-				int curV = list.get(j)[1];
-				
-				if(w+curW<=K) {
-					list.add(new int[] {w+curW, v+curV});
-				}
-			}
-			
-			if(w<=K) {
-				list.add(new int[] {w, v});
+			for(int j=1; j<=K; j++) {
+				// [i][j-물건의 무게] + 물건가치와 [i+1][j]와 비교
+				if(j>=w) {
+					dp[i+1][j] = (dp[i][j-w] + v) > (dp[i][j]) ?
+							(dp[i][j-w] + v) : (dp[i][j]);
+				} else {
+					dp[i+1][j] = dp[i][j];
+				}				 
 			}
 		}
 		
-		Collections.sort(list, new Comparator<int[]>() {
-
-			@Override
-			public int compare(int[] o1, int[] o2) {
-				return Integer.compare(o2[1], o1[1]);
-			}
-		
-		});
-		System.out.println(list.get(0)[1]);
+		System.out.println(dp[N][K]);
 		br.close();
 	}
 }

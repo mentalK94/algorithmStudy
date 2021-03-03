@@ -1,6 +1,6 @@
 /**
- * Backjoon - 12865. 평범한 배낭
- * 평범한배낭_12865.java
+ * Backjoon - 13908. 비밀번호
+ * 비밀번호_13908.java
  * @date 2021-01-27
  * @author hansolKim
  **/

@@ -8,7 +8,6 @@
 package programmers;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
@@ -55,8 +54,8 @@ public class 순위검색 {
         // info를 가지고 infoList 만들기        
         StringBuilder sb = new StringBuilder();
         
-        for(String i : info) {
-        	StringTokenizer st = new StringTokenizer(i);
+        for(String in : info) {
+        	StringTokenizer st = new StringTokenizer(in);
         	String lang = st.nextToken();
         	String field = st.nextToken();
         	String career = st.nextToken();
@@ -64,21 +63,32 @@ public class 순위검색 {
         	int point = Integer.parseInt(st.nextToken());
         	
         	// 키 생성
-        	sb.append(lang).append(field).append(career).append(food);
-        	
-        	// 해당 키 존재여부 확인
-        	ArrayList<Applicant> applicantList;
-        	if(map.containsKey(sb.toString())) {
-        		applicantList = map.get(sb.toString());        		
-        	} else {
-        		applicantList = new ArrayList<>();
-        	}
-        	
-        	applicantList.add(new Applicant(lang, field, career, food, point));
-        	map.put(sb.toString(), applicantList);
-        	
-        	// StringBuilder 리셋
-        	sb.replace(0, sb.length(), "");
+        	for(int i=0; i<2; i++) {
+        		for(int j=0; j<2; j++) {
+        			for(int k=0; k<2; k++) {
+        				for(int t=0; t<2; t++) {        	        		
+        					sb.append(i==0 ? "-" : lang);
+        					sb.append(j==0 ? "-" : field);
+        					sb.append(k==0 ? "-" : career);
+        					sb.append(t==0 ? "-" : food);
+        					
+        					// 해당 키 존재여부 확인
+        		        	ArrayList<Applicant> applicantList;
+        		        	if(map.containsKey(sb.toString())) {
+        		        		applicantList = map.get(sb.toString());        		
+        		        	} else {
+        		        		applicantList = new ArrayList<>();
+        		        	}
+        		        	
+        		        	applicantList.add(new Applicant(lang, field, career, food, point));
+        		        	map.put(sb.toString(), applicantList);
+        		        	
+        		        	// StringBuilder 리셋
+        		        	sb.replace(0, sb.length(), "");
+        	        	}
+                	}        			
+            	}
+        	}                	
         }
         
         int idx = 0;
@@ -93,13 +103,13 @@ public class 순위검색 {
         	int point = Integer.parseInt(st.nextToken());
         	
         	sb.append(lang).append(field).append(career).append(food);
-        	System.out.println(sb.toString());
         	ArrayList<Applicant> searchList = map.get(sb.toString());        	
-        	System.out.println(searchList.size());
         	
         	int cnt = 0;
-        	for(Applicant a : searchList) {
-        		if(a.point >= point) { cnt++;}
+        	if(searchList != null) {
+	        	for(Applicant a : searchList) {
+	        		if(a.point >= point) { cnt++;}
+	        	}
         	}
 
         	answer[idx++] = cnt;
@@ -107,8 +117,7 @@ public class 순위검색 {
         	// StringBuilder 리셋
         	sb.replace(0, sb.length(), "");
         }
-        
-        System.out.println(Arrays.toString(answer));
+                
         return answer;
     }
 

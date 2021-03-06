@@ -1,32 +1,38 @@
+/**
+ * programmers - JadenCase 문자열 만들기
+ * JadenCase.java
+ * @date 2021-03-06
+ * @author hansolKim
+ **/
+
 package programmers;
 
 public class JadenCase {
 
 	public static void main(String[] args) {
 		JadenCase jadenCase = new JadenCase();
-		System.out.println(jadenCase.solution("       3peon 6ple  unFollowed me  "));
+		System.out.println(jadenCase.solution("a  b"));
 	}
 	
 	public String solution(String s) {
+        StringBuilder sb = new StringBuilder();
         
-		StringBuilder sb = new StringBuilder();
-		
-		boolean isFirst = true;
-		for(int i=0; i<s.length(); i++) {
-			String now = s.charAt(i) + "";
-			
-			if(now.contains(" ")) { // 빈 공백 문자인 경우
-				isFirst = true;
-				sb.append(now);
-			} else { // 일반 문자인 경우
-				if(isFirst) { // 첫 글자인 경우
-					sb.append(now.toUpperCase());
-					isFirst = false;
-				} else { // 두번째 이상의 글자인 경우
-					sb.append(now.toLowerCase());
-				}
-			}
-		}
+        boolean isFirst = true; // 대문자인지 확인
+        for(int i=0; i<s.length(); i++) {
+        	char c = s.charAt(i);
+        	
+        	if(isFirst && c != ' ') { // 첫 글자인 경우
+        		isFirst = false;
+        		if(c>=97 && c<=122) {
+        			c-=32;
+        		}
+        	} else { // 첫 글자가 아닌 경우
+        		// 공백인 경우
+        		if(c == ' ') { isFirst = true;}
+        		if(c>=65 && c<=90) { c+=32; }
+        	}
+        	sb.append(c);
+        }
         
         return sb.toString();
     }

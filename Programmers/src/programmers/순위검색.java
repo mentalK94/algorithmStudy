@@ -116,6 +116,8 @@ public class 순위검색 {
 		int left = 0;
 		int right = pointList.size()-1;
 		
+		if(pointList.get(right) < point) { return pointList.size(); }
+		
 		while(left<right) {
 			int mid = (left+right)/2;
 			

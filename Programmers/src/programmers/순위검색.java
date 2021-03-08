@@ -8,6 +8,8 @@
 package programmers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
@@ -16,10 +18,10 @@ public class 순위검색 {
 	public static void main(String[] args) {
 		순위검색 순위검색 = new 순위검색();
 		String[] info = {"java backend junior pizza 150",
-						 "python frontend senior chicken 210",
 						 "python frontend senior chicken 150",
-						 "cpp backend senior pizza 260",
-						 "java backend junior chicken 80",
+						 "python frontend senior chicken 150",
+						 "cpp backend senior pizza 150",
+						 "java backend junior chicken 150",
 						 "python backend senior chicken 50"};
 		String[] query = {"java and backend and junior and pizza 100",
 						  "python and frontend and senior and chicken 200",
@@ -30,26 +32,10 @@ public class 순위검색 {
 		순위검색.solution(info, query);
 	}
 	
-	static class Applicant {
-		String language;
-		String field;
-		String career;
-		String food;
-		int point;
-		
-		public Applicant(String language, String field, String career, String food, int point) {
-			this.language = language;
-			this.field = field;
-			this.career = career;
-			this.food = food;
-			this.point = point;
-		}
-	}
-	
 	public int[] solution(String[] info, String[] query) {
         int[] answer = new int[query.length];
         
-        HashMap<String, ArrayList<Applicant>> map = new HashMap<>();
+        HashMap<String, ArrayList<Integer>> map = new HashMap<>();
         
         // info를 가지고 infoList 만들기        
         StringBuilder sb = new StringBuilder();
@@ -73,15 +59,15 @@ public class 순위검색 {
         					sb.append(t==0 ? "-" : food);
         					
         					// 해당 키 존재여부 확인
-        		        	ArrayList<Applicant> applicantList;
+        		        	ArrayList<Integer> pointList;
         		        	if(map.containsKey(sb.toString())) {
-        		        		applicantList = map.get(sb.toString());        		
+        		        		pointList = map.get(sb.toString());        		
         		        	} else {
-        		        		applicantList = new ArrayList<>();
+        		        		pointList = new ArrayList<>();
         		        	}
         		        	
-        		        	applicantList.add(new Applicant(lang, field, career, food, point));
-        		        	map.put(sb.toString(), applicantList);
+        		        	pointList.add(point);
+        		        	map.put(sb.toString(), pointList);
         		        	
         		        	// StringBuilder 리셋
         		        	sb.replace(0, sb.length(), "");
@@ -89,6 +75,12 @@ public class 순위검색 {
                 	}        			
             	}
         	}                	
+        }
+        
+        for(String key : map.keySet()) {
+        	ArrayList<Integer> pointList = map.get(key);
+			Collections.sort(pointList);
+			map.put(key, pointList);
         }
         
         int idx = 0;
@@ -103,22 +95,38 @@ public class 순위검색 {
         	int point = Integer.parseInt(st.nextToken());
         	
         	sb.append(lang).append(field).append(career).append(food);
-        	ArrayList<Applicant> searchList = map.get(sb.toString());        	
         	
         	int cnt = 0;
-        	if(searchList != null) {
-	        	for(Applicant a : searchList) {
-	        		if(a.point >= point) { cnt++;}
-	        	}
-        	}
+        	if(map.containsKey(sb.toString())) {
+        		ArrayList<Integer> pointList = map.get(sb.toString());
+        		cnt = pointList.size() - lowerBound(pointList, point);
+        	} 
 
         	answer[idx++] = cnt;
-        	
+        	        	
         	// StringBuilder 리셋
         	sb.replace(0, sb.length(), "");
         }
-                
+        
+        System.out.println(Arrays.toString(answer));
         return answer;
     }
+
+	private int lowerBound(ArrayList<Integer> pointList, int point) {		
+		int left = 0;
+		int right = pointList.size()-1;
+		
+		while(left<right) {
+			int mid = (left+right)/2;
+			
+			if(pointList.get(mid) < point) {
+				left = mid+1;
+			} else {
+				right = mid; 
+			}
+		}
+				
+		return right;
+	}
 
 }

@@ -1,3 +1,10 @@
+/**
+ * programmers - 3xN 타일링
+ * _3xN_타일링.java
+ * @date 2021-03-24
+ * @author hansolKim
+ **/
+
 package programmers;
 
 public class _3xN_타일링 {
